@@ -1,0 +1,89 @@
+<app-loading-page *ngIf="isLoading"></app-loading-page>
+
+<div class="sign-up">
+  <div class="icon-home" (click)="onToShopping()">
+    <i class="fa-solid fa-house"></i>
+  </div>
+  <div class="container">
+    <form
+      autocomplete="off"
+      #formSignUp="ngForm"
+      (submit)="onSignUp(formSignUp)"
+    >
+      <h1>Sign up</h1>
+      <div class="input">
+        <input
+          type="username"
+          placeholder="Username"
+          name="username"
+          #username="ngModel"
+          ngModel
+          required
+        />
+        <div
+          class="alert-sign"
+          *ngIf="username?.errors?.['required'] && username?.touched"
+        >
+          Please enter your username.
+        </div>
+      </div>
+
+      <div class="input">
+        <input
+          type="email"
+          placeholder="Email"
+          #email="ngModel"
+          name="email"
+          ngModel
+          required
+          pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+        />
+        <div
+          class="alert-sign"
+          *ngIf="email?.errors?.['pattern'] && email?.touched"
+        >
+          Please enter a valid email address.
+        </div>
+        <div
+          class="alert-sign"
+          *ngIf="email?.errors?.['required'] && email?.touched"
+        >
+          Please enter your email.
+        </div>
+      </div>
+
+      <div class="input">
+        <input
+          type="password"
+          placeholder="Password"
+          #password="ngModel"
+          name="password"
+          ngModel
+          required
+          pattern=".{6,}"
+        />
+        <div
+          class="alert-sign"
+          *ngIf="password?.errors?.['pattern'] && password?.touched"
+        >
+          Passwords must be at least 6 characters.
+        </div>
+        <div
+          class="alert-sign"
+          *ngIf="password?.errors?.['required'] && password?.touched"
+        >
+          Please enter your password.
+        </div>
+      </div>
+      <span
+        >Already have account, <a routerLink="/auth/sign-in">Sign in</a></span
+      >
+      <button type="submit" [disabled]="formSignUp.invalid">Sign Up</button>
+    </form>
+  </div>
+  <img
+    class="wave-svg"
+    src="assets/images/sign-in/wave-sign-up.svg"
+    alt="The random Wave SVG"
+  />
+</div>

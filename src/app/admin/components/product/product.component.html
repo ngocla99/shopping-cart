@@ -1,0 +1,164 @@
+
+<app-loading-page *ngIf="isLoading"></app-loading-page>
+
+<div class="breadcrumbs" id="breadcrumbs">
+  <ul class="breadcrumb">
+    <li style="font-size: 13px; color: #9C9FA0; margin-bottom: 15px" class="active">Home / .. / Product</li>
+  </ul>
+</div>
+<div style="margin-bottom: 34px;" class="flex flex-1 flex-col md:flex-row lg:flex-row mx-2">
+  <form [formGroup]="formsearch"  (ngSubmit)="searchProduct()" style="width: 30%" class="input-group rounded">
+      <input (input)="search($event)" formControlName="keywords" type="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
+      <button (click)="searchProduct()" class="input-group-text border-0" id="search-addon">
+        <i class="fas fa-search"></i>
+      </button>
+    </form>
+</div>
+
+<div class="flex flex-1 flex-col md:flex-row lg:flex-row mx-2">
+
+    <!-- card -->
+
+    <div class="rounded overflow-hidden  mx-2 w-full">
+        <div class="text-right">
+            <button (click)="createModal()" style="background-color: #20DF7F; border-radius: 30px; margin-bottom: 27px; margin-right: 80px; width: 15%" type="button" class="btn btn-success">
+            Create Product <span style="margin-left: 15px; margin-top: 2px;"><i class="fa-solid fa-square-plus"></i></span></button>
+        </div>
+        <div class="table-responsive">
+            <table class="table text-grey-darkest">
+                <thead class="bg-grey-dark text-white text-normal">
+                <tr class="text-center">
+                    <th scope="col">ID</th>
+                    <th scope="col">Images</th>
+                    <th scope="col">Product Name</th>
+                    <th scope="col">Category</th>
+                    <th scope="col">Brand</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">countInStock</th>
+                    <th scope="col">Rating</th>
+                    <th scope="col"></th>
+                </tr>
+                </thead>
+                <tbody *ngFor="let product of allProducts | paginate: { itemsPerPage: 8, currentPage: p} ">
+                <tr class="text-center">
+                    <th scope="row">{{product.id}}</th>
+                    <td><img style="width:50px; height: 50px" src="{{product.images[0]?.url}}" class="img-responsive">
+                    </td>
+                    <td>{{product?.name}}</td>
+                    <td>{{product?.category}}</td>
+                    <td>{{product?.brand}}</td>
+                    <td>{{product?.description}}</td>
+                    <td>{{product?.price | currency}}</td>
+                    <td>{{product?.countInStock}}</td>
+                    <td>{{product?.rating | number: "1.0-1"}}</td>
+                    <td style="padding: 2px;">
+                        <button title="" class="btn btn-xs btn-white btn-default" (click)="openUpdateModal(product.id)">  
+                            <i class="ace-icon fa fa-edit"></i>
+                          </button> |
+                          <button title="" class="btn btn-xs btn-white btn-default" (click)="onDelete(product)"> 
+                            <i class="ace-icon fa fa-trash"></i>
+                          </button> 
+                    </td>
+                </tbody>
+            </table>
+            <div class="panigation">
+            <pagination-controls class="my-pagination" (pageChange)="p = $event" [responsive]="true"></pagination-controls>
+            </div>
+        </div>
+    </div>
+
+    <div *ngIf="showUpdateModal" id="createUserModal" class="modal fade">
+        <div class="modal-dialog modal-lg full-height-modal">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 style="margin-left: 140px;" *ngIf="isCreate" class="modal-title">Create Product</h4>
+              <h4 style="margin-left: 140px;" *ngIf="!isCreate" class="modal-title">Update Product</h4>
+            </div>
+            <form *ngIf="doneSetupForm" (ngSubmit)="onSubmit(formdata.value)" [formGroup]="formdata"  class="form-horizontal utehy-form">
+              <div class="modal-body no-padding">
+                <div class="form-group" style="margin-left: 20px">
+                  <label style="font-size: 15px" class="col-sm-4 control-label no-padding-right"> Product Name(<span style="color: red;">*</span>)</label>
+                  <div class="col-sm-5">
+                    <input style="width: 400px; border: 1px solid #E2E6EE; padding:5px" type="text" placeholder="Product Name" formControlName="name"/>
+                    <div *ngIf="submitted && f.product_name?.errors" class="invalid-feedback">
+                      <div *ngIf="f.product_name?.errors?.required">Product name is required</div>
+                    </div>
+                    
+                      
+                    </div>
+                  </div>
+                </div>
+    
+                <div style="margin-left: 34px; margin-bottom: 15px;" class="form-group">
+                  <label class="col-sm-2 control-label no-padding-right">Brand(<span style="color: red;">*</span>)</label>
+                  <div class="col-sm-5">
+                    <input style="width: 400px; border: 1px solid #E2E6EE; padding: 5px;" type="text" placeholder="Brand" formControlName="brand"/>
+                    <div *ngIf="submitted && f.product_brand?.errors" class="invalid-feedback">
+                      <div *ngIf="f.product_brand?.errors?.required">Brand is required</div>
+                  </div>
+                  </div>
+                </div>
+    
+                <div style="margin-left: 34px; margin-bottom: 15px;" class="form-group">
+                  <label class="col-sm-2 control-label no-padding-right">Category(<span style="color: red;">*</span>)</label>
+                  <div class="col-sm-5">
+                    <input style="width: 400px; border: 1px solid #E2E6EE; padding: 5px" type="text" placeholder="Category" formControlName="category"/>
+                    <div *ngIf="submitted && f.product_category?.errors" class="invalid-feedback">
+                      <div *ngIf="f.product_category?.errors?.required">Category is required</div>
+                  </div>
+                  </div>
+                </div>
+    
+    
+                <div style="margin-left: 34px; margin-bottom: 15px;" class="form-group">
+                  <label class="col-sm-2 control-label no-padding-right">Description</label>
+                  <div class="col-sm-10">
+                    <input style="width: 400px; border: 1px solid #E2E6EE; padding: 5px" type="text" placeholder="" formControlName="description"/>
+                  </div>
+                </div>
+  
+                <div style="margin-left: 34px; margin-bottom: 15px;" class="form-group">
+                  <label class="col-sm-2 control-label no-padding-right">Price</label>
+                  <div class="col-sm-10">
+                    <input style="width: 400px; border: 1px solid #E2E6EE; padding:5px" type="text" placeholder="" formControlName="price"/>
+                  </div>
+                </div>
+
+                <div style="margin-left: 34px; margin-bottom: 15px;" class="form-group">
+                  <label class="col-sm-2 control-label no-padding-right">countInStock</label>
+                  <div class="col-sm-10">
+                    <input style="width: 400px; border: 1px solid #E2E6EE; padding:5px" type="text" placeholder="" formControlName="countInStock"/>
+                  </div>
+                </div>
+
+                <div style="margin-left: 34px; margin-bottom: 15px;" class="form-group">
+                  <label class="col-sm-2 control-label no-padding-right">Rating</label>
+                  <div class="col-sm-10">
+                    <input style="width: 400px; border: 1px solid #E2E6EE; padding:5px" type="number" min="1" max="5" placeholder="" formControlName="rating"/>
+                  </div>
+                </div>
+
+                <div *ngIf="isCreate" style="margin-left: 34px; margin-bottom: 15px;" class="form-group">
+                  <label class="col-sm-2 control-label no-padding-right">Images</label>
+                  <div class="col-sm-10">
+                    <input style="width: 400px; border: 1px solid #E2E6EE; padding:5px" type="text" placeholder="" formControlName="imageUrls"/>
+                  </div>
+                </div>
+
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default btn-sm" (click)="Reset()">
+                <i class="fa fa-bell"></i> Reset
+              </button>
+              <button type="submit" class="btn btn-success btn-sm btn-submit">
+                <i class="fa fa-save"></i> Submit
+              </button>
+              <button type="button" class="btn btn-default btn-sm" (click)="closeModal()">
+                <i class="fa fa-times"></i> Close
+              </button>
+            </div>
+          </form>  
+          </div>
+        </div>
+      </div>
+</div>

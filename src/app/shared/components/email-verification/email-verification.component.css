@@ -1,0 +1,80 @@
+.wrapper {
+  position: fixed;
+  z-index: 99999;
+  bottom: 30px;
+  right: 10px;
+  max-width: 365px;
+  background: #fff;
+  padding: 25px 25px 30px 25px;
+  border-radius: 15px;
+  box-shadow: 0px 1px 20px 0px rgb(0 0 0 / 10%);
+  text-align: center;
+}
+
+.wrapper.hide {
+  opacity: 0;
+  pointer-events: none;
+  transform: scale(0.8);
+  transition: all 0.3s ease;
+}
+
+::selection {
+  color: #fff;
+  background: #20df7f;
+}
+
+.icon-close {
+  font-size: 18px;
+  color: #adb5bd;
+  position: absolute;
+  top: 15px;
+  right: 15px;
+}
+
+.icon-close:hover {
+  color: #495057;
+}
+
+.content header {
+  font-size: 25px;
+  font-weight: 600;
+}
+
+.content {
+  margin-top: 10px;
+}
+
+.content p {
+  color: #858585;
+  margin: 5px 0 20px 0;
+}
+.content .buttons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.buttons button {
+  width: 100%;
+  padding: 10px 20px;
+  border: none;
+  outline: none;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 500;
+  border-radius: 5px;
+  background: #20df7f;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.buttons button:hover {
+  transform: scale(0.97);
+}
+.buttons .item {
+  margin: 0 10px;
+}
+
+.buttons a {
+  color: #20df7f;
+}

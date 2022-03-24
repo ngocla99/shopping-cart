@@ -1,0 +1,36 @@
+
+/* .my-pagination /deep/ .ngx-pagination .current {
+    background: #fe4f70;
+    border-radius: 50%;
+  } */
+  .panigation {
+    display: flex;
+    justify-content: center;
+  }
+
+::placeholder {
+    color: #9EA8BD;
+    font-size: 14px;
+  }
+.model-title {
+    height: 50px
+}
+.form-group input {
+    height: 28px;
+}
+
+
+.modal {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+
+
+.control-label {
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: #566a7f;
+}

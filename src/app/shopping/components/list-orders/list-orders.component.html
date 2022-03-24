@@ -1,0 +1,377 @@
+<app-loading-page *ngIf="isLoading"></app-loading-page>
+<div class="content-wrapper p-md-5">
+  <div class="container-xxl">
+    <div class="row">
+      <!-- User Sidebar -->
+      <div class="col-xl-4 order-1 order-xl-0">
+        <!-- User Card -->
+        <div class="card mb-4">
+          <div class="card-body">
+            <div class="user-avatar-section">
+              <div class="d-flex align-items-center flex-column">
+                <img
+                  class="img-fluid rounded my-4"
+                  [src]="user?.avatar || imageDefault"
+                  height="110"
+                  width="110"
+                  alt="User avatar"
+                />
+                <div class="user-info text-center">
+                  <h4 class="mb-2">{{ user?.username }}</h4>
+                  <span class="badge bg-label-secondary">User</span>
+                </div>
+              </div>
+            </div>
+            <div class="d-flex justify-content-around flex-wrap my-4 py-3">
+              <div class="d-flex align-items-center me-4 mt-3 gap-3">
+                <span class="badge bg-label-primary p-2 rounded">
+                  <i class="fa-solid fa-cart-shopping bx-sm"></i
+                ></span>
+                <div>
+                  <h4 class="mb-0 text-center">{{ totalOrder }}</h4>
+                  <span style="font-size: 13px">Orders</span>
+                </div>
+              </div>
+              <div class="d-flex align-items-center mt-3 gap-3">
+                <span class="badge bg-label-primary p-2 rounded"
+                  ><i class="fa-solid fa-truck-fast bx-sm"></i
+                ></span>
+                <div>
+                  <h4 class="mb-0 text-center">0</h4>
+                  <span style="font-size: 13px">Shipping</span>
+                </div>
+              </div>
+            </div>
+            <h5 class="pb-2 border-bottom mb-4">Details</h5>
+            <div class="info-container">
+              <ul class="list-unstyled">
+                <li class="mb-3">
+                  <span class="fw-bold me-2">Username:</span>
+                  <span>{{ user?.username }}</span>
+                </li>
+                <li class="mb-3">
+                  <span class="fw-bold me-2">Email:</span>
+                  <span>{{ user?.email }}</span>
+                </li>
+                <li class="mb-3">
+                  <span class="fw-bold me-2">Status:</span>
+                  <span class="badge completed">Active</span>
+                </li>
+                <li class="mb-3">
+                  <span class="fw-bold me-2">Contact:</span>
+                  <span>{{ user?.contact }}</span>
+                </li>
+                <li class="mb-3">
+                  <span class="fw-bold me-2">Address:</span>
+                  <span>Cau Giay, Ha Noi</span>
+                </li>
+              </ul>
+              <div class="d-flex justify-content-center pt-3">
+                <a
+                  class="btn btn-primary me-3"
+                  data-bs-target="#editUser"
+                  routerLink="/auth/my-profile"
+                  >Edit</a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- /User Card -->
+      </div>
+      <!--/ User Sidebar -->
+
+      <!-- User Content -->
+      <div class="col-xl-8 order-0 order-xl-1">
+        <!-- Project table -->
+        <div class="card mb-4">
+          <h5 class="card-header">User's Orders List</h5>
+          <div class="table-responsive mb-3">
+            <div
+              id="DataTables_Table_0_wrapper"
+              class="dataTables_wrapper dt-bootstrap5 no-footer"
+            >
+              <table class="table">
+                <thead class="table-dark">
+                  <tr>
+                    <th
+                      class="control"
+                      rowspan="1"
+                      colspan="1"
+                      style="width: 0px"
+                      aria-label=""
+                    ></th>
+                    <th class="col--1">Date</th>
+                    <th class="col--2">Status</th>
+                    <th class="col--3">Payment</th>
+                    <th class="col--4">Paid</th>
+                    <th class="col--5">Price</th>
+                    <th class="col--6">Address</th>
+                  </tr>
+                </thead>
+                <tbody class="table-border-bottom-0">
+                  <tr *ngFor="let order of myOrders; let i = index">
+                    <td class="control" (click)="onShowModal(i)"></td>
+                    <td class="col--1">
+                      {{ order?.createdAt | date: "h:mm a, dd/MM/yyyy" }}
+                    </td>
+                    <td class="col--2">
+                      <span
+                        class="badge me-1"
+                        [class]="order?.status?.toLowerCase()"
+                        >{{ order?.status }}</span
+                      >
+                    </td>
+                    <td class="col--3">{{ order?.paymentMethod }}</td>
+                    <td class="col--4">{{ order?.isPaid ? "Yes" : "No" }}</td>
+                    <td class="col--5">${{ order?.totalPrice }}</td>
+                    <td class="col--6">{{ order?.address | titlecase }}</td>
+                  </tr>
+                </tbody>
+              </table>
+              <div class="d-flex justify-content-end mx-4">
+                <div
+                  class="dataTables_paginate paging_simple_numbers"
+                  id="DataTables_Table_0_paginate"
+                >
+                  <ul class="pagination">
+                    <li
+                      class="paginate_button page-item previous disabled"
+                      id="DataTables_Table_0_previous"
+                    >
+                      <a
+                        href="#"
+                        aria-controls="DataTables_Table_0"
+                        data-dt-idx="0"
+                        tabindex="0"
+                        class="page-link"
+                        >Previous</a
+                      >
+                    </li>
+                    <li class="paginate_button page-item active">
+                      <a
+                        href="#"
+                        aria-controls="DataTables_Table_0"
+                        data-dt-idx="1"
+                        tabindex="0"
+                        class="page-link"
+                        >1</a
+                      >
+                    </li>
+                    <li class="paginate_button page-item">
+                      <a
+                        href="#"
+                        aria-controls="DataTables_Table_0"
+                        data-dt-idx="2"
+                        tabindex="0"
+                        class="page-link"
+                        >2</a
+                      >
+                    </li>
+                    <li
+                      class="paginate_button page-item next"
+                      id="DataTables_Table_0_next"
+                    >
+                      <a
+                        href="#"
+                        aria-controls="DataTables_Table_0"
+                        data-dt-idx="3"
+                        tabindex="0"
+                        class="page-link"
+                        >Next</a
+                      >
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- /Project table -->
+
+        <!-- Payment Method -->
+        <div class="card card-action mb-4">
+          <div class="card-header align-items-center">
+            <h5 class="card-action-title mb-0">Payment Methods</h5>
+            <div class="card-action-element">
+              <button
+                class="btn btn-primary btn-sm"
+                type="button"
+                data-bs-toggle="modal"
+                data-bs-target="#addNewCCModal"
+              >
+                <i class="fa-solid fa-plus bx-xs me-1"></i>Add Card
+              </button>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="added-cards">
+              <div class="cardMaster border p-3 rounded mb-3">
+                <div
+                  class="d-flex justify-content-between flex-sm-row flex-column"
+                >
+                  <div class="card-information">
+                    <img
+                      class="mb-3 img-fluid"
+                      src="assets/images/payment/mastercard.png"
+                      alt="Master Card"
+                    />
+                    <h6 class="mb-1">Kaith Morrison</h6>
+                    <span class="card-number">∗∗∗∗ ∗∗∗∗ ∗∗∗∗ 9856</span>
+                  </div>
+                  <div class="d-flex flex-column text-start text-lg-end">
+                    <div class="d-flex order-sm-0 order-1">
+                      <button
+                        class="btn btn-label-primary me-3"
+                        data-bs-toggle="modal"
+                        data-bs-target="#editCCModal"
+                      >
+                        Edit
+                      </button>
+                      <button class="btn btn-label-secondary">Delete</button>
+                    </div>
+                    <small class="mt-sm-auto mt-2 order-sm-1 order-0"
+                      >Card expires at 12/26</small
+                    >
+                  </div>
+                </div>
+              </div>
+              <div class="cardMaster border p-3 rounded mb-3">
+                <div
+                  class="d-flex justify-content-between flex-sm-row flex-column"
+                >
+                  <div class="card-information">
+                    <img
+                      class="mb-3 img-fluid"
+                      src="assets/images/payment/visa.png"
+                      alt="Master Card"
+                    />
+                    <div class="d-flex align-items-center mb-1">
+                      <h6 class="mb-0 me-3">Tom McBride</h6>
+                      <span class="badge bg-label-custom me-1">Primary</span>
+                    </div>
+                    <span class="card-number">∗∗∗∗ ∗∗∗∗ ∗∗∗∗ 6542</span>
+                  </div>
+                  <div class="d-flex flex-column text-start text-lg-end">
+                    <div class="d-flex order-sm-0 order-1">
+                      <button
+                        class="btn btn-label-primary me-3"
+                        data-bs-toggle="modal"
+                        data-bs-target="#editCCModal"
+                      >
+                        Edit
+                      </button>
+                      <button class="btn btn-label-secondary">Delete</button>
+                    </div>
+                    <small class="mt-sm-auto mt-2 order-sm-1 order-0"
+                      >Card expires at 10/24</small
+                    >
+                  </div>
+                </div>
+              </div>
+              <div class="cardMaster border p-3 rounded">
+                <div
+                  class="d-flex justify-content-between flex-sm-row flex-column"
+                >
+                  <div class="card-information">
+                    <img
+                      class="mb-3 img-fluid"
+                      src="assets/images/payment/american-ex.png"
+                      alt="Visa Card"
+                    />
+                    <h6 class="mb-1">Mildred Wagner</h6>
+                    <span class="card-number">∗∗∗∗ ∗∗∗∗ ∗∗∗∗ 5896</span>
+                  </div>
+                  <div class="d-flex flex-column text-start text-lg-end">
+                    <div class="d-flex order-sm-0 order-1">
+                      <button
+                        class="btn btn-label-primary me-3"
+                        data-bs-toggle="modal"
+                        data-bs-target="#editCCModal"
+                      >
+                        Edit
+                      </button>
+                      <button class="btn btn-label-secondary">Delete</button>
+                    </div>
+                    <small class="mt-sm-auto mt-2 order-sm-1 order-0"
+                      >Card expires at 10/27</small
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Payment Method -->
+      </div>
+      <!--/ User Content -->
+    </div>
+  </div>
+</div>
+<app-menu [isCart]="false"></app-menu>
+
+<!-- Modal dialog -->
+<div
+  class="modal fade dtr-bs-modal"
+  [ngClass]="{ modal: true, fade: true, 'dtr-bs-modal': true, show: showModal }"
+  aria-modal="true"
+  role="dialog"
+>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Details of Order</h4>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+          (click)="showModal = false"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <table class="table">
+          <tbody>
+            <tr data-dt-row="91" data-dt-column="1">
+              <td>Date:</td>
+              <td>
+                {{ myOrders[index]?.createdAt | date: "h:mm a, dd/MM/yyyy" }}
+              </td>
+            </tr>
+            <tr data-dt-row="91" data-dt-column="2">
+              <td>Status:</td>
+              <td>
+                <span
+                  class="badge me-1"
+                  [class]="myOrders[index]?.status?.toLowerCase()"
+                  >{{ myOrders[index]?.status }}</span
+                >
+              </td>
+            </tr>
+            <tr data-dt-row="91" data-dt-column="3">
+              <td>Payment:</td>
+              <td>{{ myOrders[index]?.paymentMethod }}</td>
+            </tr>
+            <tr data-dt-row="91" data-dt-column="4">
+              <td>Paid:</td>
+              <td>{{ myOrders[index]?.isPaid ? "Yes" : "No" }}</td>
+            </tr>
+            <tr data-dt-row="91" data-dt-column="5">
+              <td>Price:</td>
+              <td>${{ myOrders[index]?.totalPrice }}</td>
+            </tr>
+            <tr class="row-last" data-dt-row="91" data-dt-column="6">
+              <td>Address:</td>
+              <td>{{ myOrders[index]?.address | titlecase }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+<div
+  class="modal-backdrop fade"
+  [ngClass]="{ 'modal-backdrop': true, fade: true, show: showModal }"
+  (click)="showModal = false"
+></div>

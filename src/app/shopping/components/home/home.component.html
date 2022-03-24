@@ -1,0 +1,99 @@
+<app-preloader (loading)="preLoad = $event"></app-preloader>
+<div *ngIf="!preLoad" class="container-fluid container-xl pt-5">
+  <div class="search">
+    <div class="input-group">
+      <input
+        type="text"
+        class="form-control"
+        placeholder="Search"
+        aria-label="Dollar amount (with dot and two decimal places)"
+        name="search"
+        [(ngModel)]="searchStr"
+      />
+      <img
+        class="slider-svg"
+        src="assets/images/icon/sliders-horizontal.svg"
+        alt="The random Wave SVG"
+      />
+    </div>
+  </div>
+  <nav>
+    <ul
+      class="list-categories mt-4 d-flex justify-content-start align-items-center list-unstyled"
+    >
+      <li class="item text-center">Clothes</li>
+      <li class="item text-center">Fashion</li>
+      <li class="item text-center">Electronics</li>
+      <li class="item text-center">Books</li>
+      <li class="item text-center">Toys</li>
+      <a class="fw-bold more">more</a>
+    </ul>
+  </nav>
+  <section class="list-products mt-5 mb-4">
+    <h4 class="mb-4">Trending Items</h4>
+    <div class="content">
+      <ul
+        class="list-unstyled d-flex justify-content-between align-items-center"
+      >
+        <li class="mb-5" *ngFor="let product of allProducts | filter:searchStr; let i = index">
+          <div
+            class="product-item d-flex justify-content-between align-items-center"
+            *ngFor="let img of product.images"
+          >
+            <div class="left">
+              <img
+                (click)="handleDetail(product.id)"
+                src="{{img.url}}"
+                alt=""
+              />
+            </div>
+            <div class="right">
+              <div class="name-top mb-4">
+                <h6 class="mb-3 product-name">
+                  {{ product.name | titlecase | truncate: 18 }}
+                </h6>
+                <p>{{ product.description | titlecase }}</p>
+              </div>
+              <div class="product-color d-flex align-items-center">
+                <p class="m-0 me-3">Colors</p>
+                <div class="color-box d-flex">
+                  <div class="color color-1"></div>
+                  <div class="color color-2"></div>
+                  <div class="color color-3"></div>
+                </div>
+              </div>
+              <div class="status d-flex align-items-center mb-5">
+                <p class="available text-center m-0 me-3">
+                  Available {{ product.countInStock }}
+                </p>
+                <p class="discount m-0">25% off</p>
+              </div>
+              <div
+                class="price-cart d-flex align-items-center justify-content-between"
+              >
+                <div class="price">
+                  <p class="mb-0"><span>&#36;</span>{{ product.price }}</p>
+                  <p class="star-rating mb-0">
+                    <i
+                      class="fa-solid fa-star me-1"
+                      *ngFor="let item of ratings[i]"
+                    ></i
+                    >&nbsp;&nbsp;&nbsp;Sold
+                    <span style="font-weight: 500">{{
+                      product.numOfReviews | number: "1.0-1"
+                    }}</span>
+                  </p>
+                </div>
+                <div class="add-cart">
+                  <i class="fa-solid fa-cart-shopping me-2" (click)="addToCart(product)"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </section>
+</div>
+<app-navigation *ngIf="!preLoad"></app-navigation>
+<app-footer *ngIf="!preLoad"></app-footer>

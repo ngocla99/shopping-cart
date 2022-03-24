@@ -1,0 +1,40 @@
+<section class="menu-responsive">
+  <div id="circularMenu" class="circular-menu circular-menu-left">
+    <a
+      class="floating-btn"
+      onclick="document.getElementById('circularMenu').classList.toggle('active');"
+    >
+      <i class="fa fa-plus"></i>
+    </a>
+
+    <menu class="items-wrapper">
+      <a *ngIf="isSignedIn" class="menu-item" (click)="onLogout()"
+        ><i class="fa-solid fa-arrow-right-from-bracket"></i
+      ></a>
+      <a *ngIf="!isSignedIn" class="menu-item" routerLink="/auth/sign-in"
+        ><i class="fa-solid fa-arrow-right-to-bracket"></i
+      ></a>
+      <a
+        *ngIf="isCart && !isAdmin && isSignedIn"
+        routerLink="/list-orders"
+        class="menu-item fa-solid fa-list"
+      ></a>
+      <a
+        *ngIf="!isCart && !isAdmin && isSignedIn"
+        routerLink="/cart"
+        class="menu-item fa-solid fa-cart-shopping"
+      ></a>
+      <a
+        *ngIf="isAdmin"
+        routerLink="/admin"
+        class="menu-item fa-solid fa-table"
+      ></a>
+      <a *ngIf="isSignedIn" routerLink="/auth/my-profile" class="menu-item"
+        ><img [src]="user?.avatar || imageDefault" alt="User avatar"
+      /></a>
+      <a *ngIf="isSignedIn" routerLink="/" class="menu-item"
+        ><i class="fa-solid fa-house"></i
+      ></a>
+    </menu>
+  </div>
+</section>

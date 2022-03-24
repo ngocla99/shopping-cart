@@ -1,0 +1,121 @@
+<!--Container -->
+<div class="mx-auto bg-grey-400">
+  <!--Screen-->
+  <div class="min-h-screen flex flex-col">
+    <!--Header Section Starts Here-->
+    <header class="bg-nav">
+      <div style="background-color: #093545" class="flex justify-between">
+        <div class="p-1 mx-3 inline-flex items-center">
+          <i class="fas fa-bars pr-2 text-white" onclick="sidebarToggle()"></i>
+          <h1 style="font-size: 30px" class="text-white p-2">PShop Web</h1>
+        </div>
+        <!-- <div class="p-1 flex flex-row items-center">
+                    <a href="https://github.com/tailwindadmin/admin" class="text-white p-2 mr-2 no-underline hidden md:block lg:block">Github</a>
+
+
+                    <img onclick="profileToggle()" class="inline-block h-8 w-8 rounded-full" src="https://avatars0.githubusercontent.com/u/4323180?s=460&v=4" alt="">
+                    <a href="#" onclick="profileToggle()" class="text-white p-2 no-underline hidden md:block lg:block">Adam Wathan</a>
+                    <div id="ProfileDropDown" class="rounded hidden shadow-md bg-white absolute pin-t mt-12 mr-1 pin-r">
+                        <ul class="list-reset">
+                          <li><a href="#" class="no-underline px-4 py-2 block text-black hover:bg-grey-light">My account</a></li>
+                          <li><a href="#" class="no-underline px-4 py-2 block text-black hover:bg-grey-light">Notifications</a></li>
+                          <li><hr class="border-t mx-2 border-grey-ligght"></li>
+                          <li><a href="#" class="no-underline px-4 py-2 block text-black hover:bg-grey-light">Logout</a></li>
+                        </ul>
+                    </div>
+                </div> -->
+        <div class="p-1 flex flex-row items-center dropdown">
+          <img
+            style="margin-right: 10px"
+            [src]="userInfo?.avatar || imageDefault"
+            class="inline-block h-8 w-8 rounded-full"
+            alt=""
+          />
+          <button
+            class="btn btn-secondary dropdown-toggle"
+            type="button"
+            id="dropdownMenuButton1"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+          {{userInfo?.username | titlecase}}
+          </button>
+          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+            <li><a class="dropdown-item" routerLink="/auth/my-profile">My Profile</a></li>
+            <li><a class="dropdown-item" href="#">Notifications</a></li>
+            <li><a class="dropdown-item" href="#">Logout</a></li>
+          </ul>
+        </div>
+      </div>
+    </header>
+    <!--/Header-->
+
+    <div class="flex flex-1">
+      <!--Sidebar-->
+      <aside
+        style="width: 200px"
+        id="sidebar"
+        class="bg-side-nav w-full md:w-1/6 lg:w-1/6 border-r border-side-nav hidden md:block lg:block"
+      >
+        <ul style="padding: 0" class="list-reset flex flex-col">
+          <li
+            class="w-full h-full py-3 px-2 border-b border-light-border bg-white"
+          >
+            <a
+              routerLink="product"
+              class="font-sans font-hairline hover:font-normal text-sm text-nav-item no-underline"
+            >
+              <i
+                style="margin-top: 5px"
+                class="fa-solid fa-house float-left mx-2"
+              ></i>
+              Home
+            </a>
+          </li>
+          <li class="w-full h-full py-3 px-2 border-b border-light-border">
+            <a
+              routerLink="user"
+              class="font-sans font-hairline hover:font-normal text-sm text-nav-item no-underline"
+            >
+              <i style="margin-top: 5px" class="fa fa-user float-left mx-2"></i>
+              Users
+            </a>
+          </li>
+          <li class="w-full h-full py-3 px-2 border-b border-light-border">
+            <a
+              routerLink="product"
+              class="font-sans font-hairline hover:font-normal text-sm text-nav-item no-underline"
+            >
+              <i
+                style="margin-top: 5px"
+                class="fa fa-signal menu-icon float-left mx-2"
+              ></i>
+              Product
+            </a>
+          </li>
+
+          <div class="dropdown">
+            <li class="w-full h-full py-3 px-2 border-b border-light-border">
+              <a
+                routerLink="order"
+                class="font-sans font-hairline hover:font-normal text-sm text-nav-item no-underline"
+              >
+                <i
+                  style="margin-top: 5px"
+                  class="fas fa-shopping-cart float-left mx-2"
+                ></i>
+                Order
+              </a>
+            </li>
+          </div>
+        </ul>
+      </aside>
+      <!--/Sidebar-->
+      <!--Main-->
+      <main class="bg-white-300 flex-1 p-3 overflow-hidden">
+        <router-outlet></router-outlet>
+      </main>
+      <!--/Main-->
+    </div>
+  </div>
+</div>

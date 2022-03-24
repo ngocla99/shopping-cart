@@ -1,0 +1,267 @@
+<app-loading-page *ngIf="isLoading"></app-loading-page>
+
+<div class="breadcrumbs" id="breadcrumbs">
+    <ul class="breadcrumb">
+      <li style="font-size: 13px; color: #9C9FA0; margin-bottom: 15px" class="active">Home / .. /Order</li>
+    </ul>
+  </div>
+
+  <!-- <div class="flex flex-1 flex-col md:flex-row lg:flex-row mx-2" style="margin-bottom: 27px">
+    <div class="shadow-lg bg-red-vibrant border-l-8 hover:bg-red-vibrant-dark border-red-vibrant-dark mb-2 p-2 md:w-1/4 mx-2">
+        <div class="p-4 flex flex-col">
+            <a href="#" class="no-underline text-white text-2xl">
+                $244
+            </a>
+            <a href="#" class="no-underline text-white text-lg">
+                Total Sales
+            </a>
+        </div>
+    </div>
+
+    <div class="shadow bg-info border-l-8 hover:bg-info-dark border-info-dark mb-2 p-2 md:w-1/4 mx-2">
+        <div class="p-4 flex flex-col">
+            <a href="#" class="no-underline text-white text-2xl">
+                $199.4
+            </a>
+            <a href="#" class="no-underline text-white text-lg">
+                Total Cost
+            </a>
+        </div>
+    </div>
+
+    <div class="shadow bg-warning border-l-8 hover:bg-warning-dark border-warning-dark mb-2 p-2 md:w-1/4 mx-2">
+        <div class="p-4 flex flex-col">
+            <a href="#" class="no-underline text-white text-2xl">
+                900
+            </a>
+            <a href="#" class="no-underline text-white text-lg">
+                Total Users
+            </a>
+        </div>
+    </div>
+
+    <div class="shadow bg-success border-l-8 hover:bg-success-dark border-success-dark mb-2 p-2 md:w-1/4 mx-2">
+        <div class="p-4 flex flex-col">
+            <a href="#" class="no-underline text-white text-2xl">
+                500
+            </a>
+            <a href="#" class="no-underline text-white text-lg">
+                Total Products
+            </a>
+        </div>
+    </div>
+</div> -->
+<h3 class="title-name">Order List</h3>
+<div class="flex flex-1 flex-col md:flex-row lg:flex-row mx-2">
+
+    <!-- card -->
+
+    <div class="rounded overflow-hidden  mx-2 w-full">
+        <div class="text-right">
+        </div>
+        <div class="table-responsive">
+            <table class="table text-grey-darkest">
+                <thead class="bg-grey-dark text-white text-normal">
+                <tr class="text-center">
+                    <th scope="col">ID</th>
+                    <th scope="col">UserID</th>
+                    <th scope="col">Address</th>
+                    <th scope="col">Contact</th>
+                    <th scope="col">paymentMethod</th>
+                    <th scope="col">isPaid</th>
+                    <th scope="col">paidAt</th>
+                    <th scope="col">totalPrice</th>
+                    <th scope="col">Status</th>
+                    <th scope="col"></th>
+                </tr>
+                </thead>
+                <tbody *ngFor="let order of orders | paginate: { itemsPerPage: 8, currentPage: p}" >
+                <tr class="text-center">
+                    <th scope="row">{{order.id}}</th>
+                    <td>
+                        <button class="">
+                            {{order.userId}}
+                        </button>
+                    </td>
+                    <td>{{order.address}}</td>
+                    <td>{{order.contact}}</td>
+                    <td>{{order.paymentMethod}}</td>
+                    <td class="text-center" *ngIf="order?.isPaid"><i class="fa-solid fa-circle-check"></i></td>
+                    <td class="text-center" *ngIf="!order?.isPaid"><i class="fa-solid fa-circle-xmark"></i></td>
+                    <td *ngIf="order?.paidAt">{{order.paidAt}}</td>
+                    <td *ngIf="!order?.paidAt">2022-03-21T14:16:32.077Z</td>
+                    <td>{{order.totalPrice | currency}}</td>
+                    <td>{{order.status}}</td>
+                    <td>
+                        <button title="" class="btn btn-xs btn-white btn-default" (click)="openUpdateModal(order.id)">  
+                            <i class="ace-icon fa fa-edit"></i>
+                          </button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+            <div class="panigation">
+                <pagination-controls class="my-pagination" (pageChange)="p = $event"></pagination-controls>
+            </div>
+        </div>
+    </div>
+    <!-- /card -->
+
+    <div *ngIf="showUpdateModal" class="modal fade show updateU" id="createOrderModal" tabindex="-1" aria-modal="true"  style="display: block; padding-left: 0px;">
+      <div class="modal-dialog modal-lg modal-simple modal-edit-user">
+        <div class="modal-content p-3 p-md-5">
+          <div class="modal-body">
+            <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
+            <div *ngIf="!isCreate" class="text-center mb-4">
+              <h3>Order Detail #{{order.id}}</h3>
+            </div>
+            <form id="editUserForm" *ngIf="doneSetupForm" (ngSubmit)="onSubmit(formdata.value)" [formGroup]="formdata" class="row g-3 fv-plugins-bootstrap5 fv-plugins-framework" novalidate="novalidate">
+
+              <div class="col-12 fv-plugins-icon-container">
+                <label class="form-label" for="modalEditUserName">Username</label>
+                <label type="text" id="modalEditUserName" name="modalEditUserName" class="form-control">{{customerInfor?.username}}</label>
+              <div class="fv-plugins-message-container invalid-feedback"></div></div>
+              <div class="col-12 col-md-6 fv-plugins-icon-container">
+                <label class="form-label" for="modalEditUserFirstName">UserId</label>
+                <input type="text" formControlName="userId" class="form-control" placeholder="">
+              <div class="fv-plugins-message-container invalid-feedback"></div></div>
+              <div class="col-12 col-md-6 fv-plugins-icon-container">
+                <label class="form-label" for="modalEditUserLastName">Adress</label>
+                <input type="text" id="modalEditUserLastName" formControlName="address" class="form-control">
+              <div class="fv-plugins-message-container invalid-feedback"></div></div>
+             
+              <div class="col-12 col-md-6">
+                <label class="form-label" for="modalEditUserEmail">Contact</label>
+                <input type="text" id="modalEditUserEmail" class="form-control" formControlName="contact">
+              </div>
+
+              <div class="col-12 col-md-6">
+                <label class="form-label" for="modalEditUserEmail">paymentMethod</label>
+                <input type="text" id="modalEditUserEmail" class="form-control" formControlName="paymentMethod"/>
+              </div>
+
+
+
+              <div class="col-12 col-md-6">
+                <label class="form-label" for="modalEditUserEmail">totalPrice</label>
+                <input type="text" id="modalEditUserEmail" class="form-control" formControlName="totalPrice"/>
+              </div>
+
+              <div class="col-12 col-md-6">
+                <label class="form-label" for="modalEditUserEmail">paidAt</label>
+                <input type="text" id="modalEditUserEmail" class="form-control" formControlName="paidAt"/>
+              </div>
+
+              <div class="col-12 col-md-6">
+                <label class="form-label" for="modalEditUserStatus">isPaid</label>
+                <select id="modalEditUserStatus" formControlName="isPaid" class="form-select" aria-label="Default select example">
+                  <option value="true">True</option>
+                  <option value="false">False</option>
+                </select>
+              </div>
+
+              <div class="col-12 col-md-6">
+                <label class="form-label" for="modalEditUserStatus">Status</label>
+                <select id="modalEditUserStatus" formControlName="status" class="form-select" aria-label="Default select example">
+                  <option value="Processing">Processing</option>
+                  <option value="Shipping">Shipping</option>
+                  <option value="Completed">Completed</option>
+                </select>
+              </div>
+             
+              <div class="col-12 text-center">
+                <button type="submit" class="btn btn-primary me-sm-3 me-1">Submit</button>
+                <button type="button" class="btn btn-label-secondary" data-bs-dismiss="modal" aria-label="Close"  (click)="closeModal()">Cancel</button>
+              </div>
+            <div></div><input type="hidden"></form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- <div *ngIf="showUpdateModal" id="createOrderModal" class="modal fade">
+        <div class="modal-dialog modal-lg full-height-modal">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 style="margin-left: 140px;" *ngIf="!isCreate" class="modal-title">Order Detail</h4>
+            </div>
+            <form *ngIf="doneSetupForm" (ngSubmit)="onSubmit(fora.value)" [formGroup]="formdata" mdat class="form-horizontal utehy-form">
+              <div class="modal-body no-padding">
+                <div class="form-group" style="margin-left: 20px">
+                  <label class="col-sm-4 control-label no-padding-right ">UserId</label>
+                  <div class="col-sm-5">
+                    <input style="width: 400px; border: 1px solid #E2E6EE; border-radius: 30px; padding:5px" type="text" placeholder="Nguyen Quang Duy" formControlName="userId"/>
+                    <div *ngIf="submitted && f.userId?.errors" class="invalid-feedback">
+                    </div>
+                    
+                      
+                    </div>
+                  </div>
+                </div>
+    
+                <div  style="margin-left: 34px; margin-bottom: 15px;" class="form-group">
+                  <label class="col-sm-2 control-label no-padding-right">Adress</label>
+                  <div class="col-sm-5">
+                    <input style="width: 400px; border: 1px solid #E2E6EE; border-radius: 30px; padding: 5px" type="text" formControlName="address"/>
+                  </div>
+                </div>
+    
+    
+                <div style="margin-left: 34px; margin-bottom: 15px;" class="form-group">
+                  <label class="col-sm-2 control-label no-padding-right">Contact</label>
+                  <div class="col-sm-10">
+                    <input style="width: 400px; border: 1px solid #E2E6EE; border-radius: 30px; padding: 5px" type="text" placeholder="" formControlName="contact"/>
+                  </div>
+                </div>
+
+                <div style="margin-left: 34px; margin-bottom: 15px;" class="form-group">
+                    <label class="col-sm-2 control-label no-padding-right">paymentMethod</label>
+                    <div class="col-sm-10">
+                      <input style="width: 400px; border: 1px solid #E2E6EE; border-radius: 30px; padding: 5px" type="text" placeholder="" formControlName="paymentMethod"/>
+                    </div>
+                  </div>
+
+                <div style="margin-left: 34px; margin-bottom: 15px;" class="form-group">
+                    <label class="col-sm-2 control-label no-padding-right">totalPrice</label>
+                    <div class="col-sm-10">
+                      <input style="width: 400px; border: 1px solid #E2E6EE; border-radius: 30px; padding: 5px" type="text" placeholder="" formControlName="totalPrice"/>
+                    </div>
+                  </div>
+
+                <div style="margin-left: 34px; margin-bottom: 15px;" class="form-group">
+                    <label class="col-sm-2 control-label no-padding-right">isPaid(<span style="color: red;">*</span>)</label>
+                    <div class="col-sm-10">
+                      <select style="width: 200px; border: 1px solid #E2E6EE"class="custom-select" id="inputGroupSelect01"  formControlName="isPaid">
+                        <option value="true">True</option>
+                        <option value="false">False</option>
+                      </select>
+                    </div>
+                </div>
+  
+                <div style="margin-left: 34px; margin-bottom: 15px;" class="form-group">
+                  <label class="col-sm-2 control-label no-padding-right">Status(<span style="color: red;">*</span>)</label>
+                  <div class="col-sm-10">
+                    <select style="width: 200px; border: 1px solid #E2E6EE"class="custom-select" id="inputGroupSelect01"  formControlName="status">
+                      <option value="Processing">Processing</option>
+                      <option value="Shipping">Shipping</option>
+                      <option value="Completed">Completed</option>
+                    </select>
+                  </div>
+                </div>
+
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default btn-sm">
+                <i class="fa fa-bell"></i> Reset
+              </button>
+              <button type="submit" class="btn btn-success btn-sm btn-submit">
+                <i class="fa fa-save"></i> Submit
+              </button>
+              <button type="button" class="btn btn-default btn-sm" (click)="closeModal()">
+                <i class="fa fa-times"></i> Close
+              </button>
+            </div>
+          </form>  
+          </div>
+        </div>
+      </div> -->
+</div>

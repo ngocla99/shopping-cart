@@ -1,0 +1,14 @@
+<div *ngIf="isActive && isOpen" class="wrapper">
+  <i class="fa-solid fa-xmark icon-close" (click)="onClose()"></i>
+  <div class="content">
+    <header>Verify Your Email</header>
+    <p>
+      Hi Ngoc! Use the link below to verify your email and start enjoying UTD.
+    </p>
+    <div class="buttons">
+      <button class="item" (click)="onSendVerificationEmail()">
+        Send verification email
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,100 @@
+<div class="container">
+  <nav class="home d-flex justify-content-end">
+    <a href="" class="text-decoration-none"
+      ><i class="fa-solid fa-house home"></i
+    ></a>
+  </nav>
+
+  <section>
+    <div class="content">
+      <div
+        class="content__infor d-flex justify-content-evenly align-items-center"
+      >
+        <div class="content__infor__left" *ngFor="let img of listImgs">
+          <img
+            src="{{img.url}}"
+            alt=""
+            class="img-fluid img-product"
+          />
+        </div>
+        <div class="content__infor__right">
+          <div class="top">
+            <h4 class="product-name">{{ product?.name }}</h4>
+            <div class="rating">
+              <span
+                ><i class="fa-solid fa-star star"></i
+              ></span>
+              <span>&nbsp;&nbsp;</span>
+              <span class="review text-dark"
+                >{{ product?.numOfReviews }} reviews</span
+              >
+            </div>
+          </div>
+          <hr />
+          <div class="bottom">
+            <p class="product-price fw-bold">${{ product?.price }}</p>
+            <div class="available d-flex justify-content-between">
+              <p class="availability">Availability:</p>
+              <p class="stock">ertferw</p>
+            </div>
+            <div class="available d-flex justify-content-between">
+              <p class="category">Category:</p>
+              <p class="accessories">{{ product?.category }}</p>
+            </div>
+            <div class="available d-flex justify-content-between">
+              <p class="quantity">Quantity:</p>
+              <p class="number">{{ product?.countInStock }}</p>
+            </div>
+          </div>
+          <hr />
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="center d-flex justify-content-evenly mt-5">
+    <div class="center__left d-flex justify-content-start">
+      <div class="product-img me-4" *ngFor="let img of listImgs">
+        <img
+          src="{{img.url}}"
+          alt=""
+        />
+      </div>
+    </div>
+    <div class="center__right d-flex align-items-center">
+      <button class="decrease btn btn-light border-3">-</button>
+      <span class="number">2</span>
+      <button class="increase btn btn-light border-3">+</button>
+      <button class="btn btn-light ms-5 btn-add">
+        <i class="fa-solid fa-cart-shopping"></i>&nbsp;Add To Cart
+      </button>
+    </div>
+  </section>
+  <section class="bottom mt-5 bg-light">
+    <h4 class="product-review text-center">Product Review</h4>
+    <p class="text-center">
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid cum
+      dicta dignissimos dolores error eveniet ex, impedit iste labore molestias
+      nobis odit officia quae quidem ratione suscipit unde, voluptate
+      voluptatibus!
+    </p>
+    <p class="text-center">
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid cum
+      dicta dignissimos dolores error eveniet ex, impedit iste labore molestias
+      nobis odit officia quae quidem ratione suscipit unde, voluptate
+      voluptatibus!
+    </p>
+    <p class="text-center">
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid cum
+      dicta dignissimos dolores error eveniet ex, impedit iste labore molestias
+      nobis odit officia quae quidem ratione suscipit unde, voluptate
+      voluptatibus!
+    </p>
+    <p class="text-center">
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid cum
+      dicta dignissimos dolores error eveniet ex, impedit iste labore molestias
+      nobis odit officia quae quidem ratione suscipit unde, voluptate
+      voluptatibus!
+    </p>
+  </section>
+</div>
+<app-menu></app-menu>

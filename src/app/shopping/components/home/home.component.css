@@ -1,0 +1,237 @@
+.input-group {
+  position: relative;
+  max-width: 1141px;
+}
+
+.search .input-group input {
+  border: 1px solid rgba(214, 214, 214, 0.5);
+  border-radius: 30px;
+  width: 100%;
+  height: 80px;
+  box-shadow: rgba(0, 0, 0, 0.02) 0px 10px 15px -3px,
+    rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
+  padding-left: 34px;
+  font-size: 1.2rem;
+}
+
+::placeholder {
+  font-size: 22px;
+  color: #949494;
+}
+
+.slider-svg {
+  position: absolute;
+  right: 32px;
+  top: 20px;
+  width: 42px;
+}
+
+.list-categories {
+  overflow: scroll;
+}
+
+::-webkit-scrollbar {
+  width: 0; /* Remove scrollbar space */
+  background: transparent; /* Optional: just make scrollbar invisible */
+}
+
+nav .list-categories .item {
+  border: 1px solid rgba(214, 214, 214, 0.5);
+  border-radius: 30px;
+  margin-right: 22px;
+  padding: 12px 30px;
+  line-height: 24px;
+  box-shadow: rgba(0, 0, 0, 0.01) 0px 10px 15px -3px,
+    rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
+  text-overflow: ellipsis;
+  font-size: 16px;
+  color: #474747;
+}
+
+.more {
+  font-size: 16px !important;
+}
+
+h4 {
+  color: #474747;
+  font-size: 30px;
+  margin-bottom: 50px !important;
+}
+
+nav .list-categories a {
+  color: #224957;
+}
+
+section.list-products .content ul {
+  flex-wrap: wrap;
+  max-width: 1141px;
+}
+
+section.list-products .content ul li {
+  /* TODO */
+  width: 518px;
+  height: 327px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px,
+    rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
+  border-radius: 30px;
+  overflow: hidden;
+}
+
+@media screen and (max-width: 1100px) {
+  section.list-products .content ul li {
+    width: 475px;
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  section.list-products .content ul {
+    justify-content: center;
+  }
+
+  section.list-products .content ul li {
+    width: 70%;
+    margin-right: auto;
+    margin-left: auto;
+  }
+}
+
+@media screen and (max-width: 750px) {
+  section.list-products .content ul li {
+    width: 90%;
+  }
+}
+
+section.list-products .content ul li .product-item .right {
+  flex: 45%;
+  margin: 30px 20px;
+}
+
+section.list-products .content ul li .product-item .left {
+  flex: 55%;
+  /* TODO */
+  height: 327px;
+  border-top-left-radius: 30px;
+  border-bottom-left-radius: 30px;
+  overflow: hidden;
+}
+
+section.list-products .content ul li .product-item .left img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  object-position: 50% 50%;
+}
+
+@media screen and (max-width: 570px) {
+  section.list-products .content ul li {
+    width: 80%;
+    height: 640px;
+  }
+
+  section.list-products .content ul li .product-item {
+    flex-direction: column;
+  }
+
+  section.list-products .content ul li .product-item .left {
+    height: 300px;
+    width: 100%;
+    border-bottom-left-radius: 0;
+    border-top-right-radius: 30px;
+  }
+
+  section.list-products .content ul li .product-item .left img {
+    height: 300px;
+    width: 100%;
+    object-fit: cover;
+    object-position: 50% 50%;
+  }
+
+  section.list-products .content ul li .product-item .right {
+    width: 80%;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  section.list-products .content ul li {
+    width: 100%;
+  }
+}
+
+.name-top {
+  width: 100%;
+}
+
+.product-color {
+  margin-bottom: 30px;
+}
+
+.product-name {
+  font-size: 20px;
+  color: #474747;
+  margin-bottom: 16px;
+}
+
+.color-box {
+  display: flex;
+  gap: 5px;
+  background-color: rgba(208, 208, 208, 0.8);
+  padding: 8px 7px;
+  border-radius: 20px;
+}
+
+.color {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+}
+
+.color-1 {
+  background-color: #fff;
+}
+
+.color-2 {
+  background-color: #626262;
+}
+
+.color-3 {
+  background-color: #21446d;
+}
+
+section.list-products .content .right .status .available {
+  font-size: 13px;
+  background-color: rgba(0, 167, 17, 0.5);
+  color: white;
+  border-radius: 12px;
+  padding: 4px 21px;
+}
+
+section.list-products .content .right .status .discount {
+  font-size: 16px;
+  letter-spacing: -1px;
+  font-weight: 500;
+  color: rgba(2, 102, 12, 0.5);
+}
+
+.price {
+  font-size: 20px;
+  font-weight: 600;
+}
+
+section.list-products .content .right .price-cart .price .star-rating {
+  font-size: 14px;
+  font-weight: 300;
+}
+
+.star-rating i {
+  font-size: 0.7rem;
+  color: #fcc419;
+}
+
+section.list-products .content .right .price-cart .add-cart i {
+  font-size: 36px;
+  color: #979797;
+}
+
+.add-cart i:hover {
+  color: #093545 !important;
+}

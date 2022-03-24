@@ -1,0 +1,78 @@
+<app-loading-page *ngIf="isLoading"></app-loading-page>
+
+<div class="sign-in">
+  <div class="icon-home" (click)="onToShopping()">
+    <i class="fa-solid fa-house"></i>
+  </div>
+  <div class="container">
+    <form
+      autocomplete="off"
+      #formSignIn="ngForm"
+      (submit)="onSignIn(formSignIn)"
+    >
+      <h1>Sign in</h1>
+      <p>Sign in and start shopping with your cart!</p>
+      <div class="input">
+        <input
+          type="email"
+          placeholder="Email"
+          #email="ngModel"
+          name="email"
+          ngModel
+          required
+          pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+        />
+        <div
+          class="alert-sign"
+          *ngIf="email?.errors?.['pattern'] && email?.touched"
+        >
+          Please enter a valid email address.
+        </div>
+        <div
+          class="alert-sign"
+          *ngIf="email?.errors?.['required'] && email?.touched"
+        >
+          Please enter your email.
+        </div>
+      </div>
+      <div class="input">
+        <input
+          type="password"
+          placeholder="Password"
+          #password="ngModel"
+          name="password"
+          ngModel
+          required
+          pattern=".{6,}"
+        />
+        <div
+          class="alert-sign"
+          *ngIf="password?.errors?.['pattern'] && password?.touched"
+        >
+          Passwords must be at least 6 characters.
+        </div>
+        <div
+          class="alert-sign"
+          *ngIf="password?.errors?.['required'] && password?.touched"
+        >
+          Please enter your password.
+        </div>
+      </div>
+      <span
+        >Don't have a account, <a routerLink="/auth/sign-up">Sign up</a></span
+      >
+      <button type="submit" [disabled]="formSignIn.invalid">Sign In</button>
+      <span
+        ><a class="forgot" style="font-size: 13px" (click)="onForgotPassword()"
+          >Forgot password?</a
+        ></span
+      >
+    </form>
+  </div>
+
+  <img
+    class="wave-svg"
+    src="assets/images/sign-in/wave-sign-in.svg"
+    alt="The random Wave SVG"
+  />
+</div>

@@ -1,0 +1,269 @@
+section.user {
+  border: 1px solid rgba(214, 214, 214, 0.5);
+  box-shadow: rgba(0, 0, 0, 0.02) 0px 10px 15px -3px,
+    rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
+  border-radius: 30px;
+
+  width: 100px;
+  padding: 40px 20px;
+
+  z-index: 2;
+  position: fixed;
+  top: 20%;
+  right: 6%;
+}
+
+section.user .box-user i {
+  font-size: 2.2rem;
+  color: rgba(88, 88, 88, 0.7);
+}
+
+section.user .box-user .avatar,
+.cart {
+  margin-bottom: 60px;
+}
+
+section.user .box-user .avatar img {
+  width: 50px;
+  height: 50px;
+
+  border-radius: 50%;
+}
+
+section.user .box-user .cart{
+  position: relative;
+}
+
+section.user .box-user .cart .total-item{
+  position: absolute;
+  top: -30%;
+  right: 10%;
+
+  height: 20px;
+  width: 20px;
+  line-height: 20px;
+
+  font-size: 1rem;
+  font-weight: 600;
+
+  background: orange;
+  color: white;
+
+  border-radius: 50%;
+}
+
+.box-user span {
+  font-size: 1.2rem;
+}
+
+.con-tooltip i:hover {
+  color: #093545 !important;
+}
+
+/* ToolTip */
+/*tooltip Box*/
+.con-tooltip {
+  position: relative;
+  background: transparent;
+  display: inline-block;
+  transition: all 0.3s ease-in-out;
+  cursor: default;
+}
+
+/*tooltip */
+.tooltip {
+  visibility: hidden;
+  z-index: 1;
+  opacity: 0.4;
+  width: 110px;
+
+  background: #1dc972;
+  color: #fff;
+  padding: 9px;
+
+  position: absolute;
+  top: -140%;
+  left: -25%;
+
+  border-radius: 9px;
+  font-size: 18px;
+  text-align: center;
+
+  transform: translateY(9px);
+  transition: all 0.3s ease-in-out;
+
+  box-shadow: 0 0 3px rgba(29, 201, 115, 0.802);
+}
+
+/* tooltip  after*/
+.tooltip::after {
+  content: " ";
+  width: 0;
+  height: 0;
+
+  border-style: solid;
+  border-width: 12px 12.5px 0 12.5px;
+  border-color: #1dc972 transparent transparent transparent;
+
+  position: absolute;
+  left: 40%;
+}
+.con-tooltip:hover .tooltip {
+  visibility: visible;
+  transform: translateY(-10px);
+  opacity: 1;
+  transition: 0.3s linear;
+  animation: odsoky 1s ease-in-out infinite alternate;
+}
+@keyframes odsoky {
+  0% {
+    transform: translateY(6px);
+  }
+
+  100% {
+    transform: translateY(1px);
+  }
+}
+
+.left .tooltip {
+  top: -20%;
+  left: -200%;
+}
+
+.left .tooltip::after {
+  top: 40%;
+  left: 90%;
+  transform: rotate(-90deg);
+}
+
+/* Menu Responsive */
+.circular-menu {
+  position: fixed;
+  bottom: 1em;
+  right: 1em;
+}
+
+.circular-menu .floating-btn {
+  display: block;
+  width: 3.5em;
+  height: 3.5em;
+  border-radius: 50%;
+  background-color: #1dc972;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+  color: #fff;
+  text-align: center;
+  line-height: 3.9;
+  cursor: pointer;
+  outline: 0;
+}
+
+.circular-menu.active .floating-btn {
+  box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.3);
+}
+
+.circular-menu .floating-btn:active {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4);
+}
+
+.circular-menu .floating-btn i {
+  font-size: 1.3em;
+  transition: transform 0.2s;
+}
+
+.circular-menu.active .floating-btn i {
+  transform: rotate(-45deg);
+}
+
+.circular-menu:after {
+  display: block;
+  content: " ";
+  width: 3.5em;
+  height: 3.5em;
+  border-radius: 50%;
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: -2;
+  background-color: #1dc972;
+  transition: all 0.3s ease;
+}
+
+.circular-menu.active:after {
+  transform: scale3d(5.5, 5.5, 1);
+  transition-timing-function: cubic-bezier(0.68, 1.55, 0.265, 1);
+}
+
+.circular-menu .items-wrapper {
+  padding: 0;
+  margin: 0;
+}
+
+.circular-menu .menu-item {
+  position: absolute;
+  top: 0.2em;
+  right: 0.2em;
+  z-index: -1;
+  display: block;
+  text-decoration: none;
+  color: #ffffff;
+  font-size: 1em;
+  width: 3em;
+  height: 3em;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 3;
+  background-color: rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, background 0.2s ease;
+  padding: 0 !important;
+}
+
+.menu-item img {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  position: absolute;
+  top: 3.4em;
+  right: 6.4em;
+  transform: translate3d(6.4em, -3.4em, 0);
+}
+
+.circular-menu .menu-item:hover {
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+.circular-menu.active .menu-item {
+  transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.circular-menu.active .menu-item:nth-child(1) {
+  transform: translate3d(-1em, -7em, 0);
+}
+
+.circular-menu.active .menu-item:nth-child(2) {
+  transform: translate3d(3.5em, -6.3em, 0);
+}
+
+.circular-menu.active .menu-item:nth-child(3) {
+  transform: translate3d(6.5em, -3.2em, 0);
+}
+
+.circular-menu.active .menu-item:nth-child(4) {
+  transform: translate3d(7em, 1em, 0);
+}
+
+.circular-menu.circular-menu-left {
+  right: auto;
+  left: 1em;
+}
+
+@media screen and (max-width: 1300px) {
+  .user {
+    display: none;
+  }
+}
+
+@media screen and (min-width: 1300px) {
+  .menu-responsive {
+    display: none;
+  }
+}

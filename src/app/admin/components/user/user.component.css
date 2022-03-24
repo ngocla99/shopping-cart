@@ -1,0 +1,50 @@
+.modal {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+::placeholder {
+    color: #9EA8BD;
+    font-size: 14px;
+  }
+.form-group label {
+    font-size: 0.9rem
+}
+
+.panigation {
+    display: flex;
+    justify-content: center;
+  }
+
+  .tools 
+    button label button span {
+      background-color: transparent;
+      border: 1px solid lightgray;
+      border-radius: 2px;
+      margin: 0 5px;
+
+     
+        cursor: pointer;
+      
+    
+     
+      display: inline-block;
+      font-size: 18px;
+      color: #1D6741;
+    }
+
+    button small {
+      vertical-align: 4px;
+    }
+h3 {
+  font-weight: 600; 
+  margin-left:
+   15px;
+}
+.control-label {
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: #566a7f;
+}

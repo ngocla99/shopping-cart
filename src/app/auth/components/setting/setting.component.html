@@ -1,0 +1,354 @@
+<app-loading-page *ngIf="isLoading"></app-loading-page>
+
+<div class="main-content">
+  <!-- Top navbar -->
+  <nav class="navbar navbar-top navbar-expand-md navbar-dark" id="navbar-main">
+    <div class="container-fluid">
+      <!-- Brand -->
+      <a class="h4 mb-0 text-white text-uppercase d-lg-inline-block"
+        >{{ userInfo?.role }} profile</a
+      >
+
+      <!-- User -->
+      <ul class="navbar-nav align-items-center d-flex">
+        <li class="nav-item dropdown">
+          <a
+            class="nav-link pr-0 dropdown-toggle"
+            role="button"
+            data-bs-toggle="dropdown"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >
+            <div class="media align-items-center">
+              <span class="avatar avatar-sm rounded-circle">
+                <img
+                  alt="Image placeholder"
+                  [src]="userInfo?.avatar || imageDefault"
+                />
+              </span>
+              <div class="media-body ml-2 d-none d-lg-block">
+                <span class="mb-0 text-sm font-weight-bold">{{
+                  userInfo?.username | titlecase
+                }}</span>
+              </div>
+            </div>
+          </a>
+          <div class="dropdown-menu dropdown-menu-arrow dropdown-menu-right">
+            <div class="dropdown-header noti-title">
+              <h6 class="text-overflow m-0">Welcome!</h6>
+            </div>
+            <a routerLink="/" class="dropdown-item">
+              <i class="ni ni-single-02"></i>
+              <span>Home</span>
+            </a>
+            <a
+              *ngIf="userInfo?.role === 'user'"
+              routerLink="/list-orders"
+              class="dropdown-item"
+            >
+              <i class="ni ni-settings-gear-65"></i>
+              <span>My orders</span>
+            </a>
+            <a
+              *ngIf="userInfo?.role === 'admin'"
+              routerLink="/admin"
+              class="dropdown-item"
+            >
+              <i class="ni ni-settings-gear-65"></i>
+              <span>My dashboard</span>
+            </a>
+            <a
+              (click)="onChangePassword()"
+              class="dropdown-item"
+              style="cursor: pointer"
+            >
+              <i class="ni ni-settings-gear-65"></i>
+              <span>Change password</span>
+            </a>
+            <div class="dropdown-divider"></div>
+            <a
+              (click)="onLogout()"
+              class="dropdown-item"
+              style="cursor: pointer"
+            >
+              <i class="ni ni-user-run"></i>
+              <span>Logout</span>
+            </a>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  <!-- Header -->
+  <div class="header pb-8 pt-5 pt-8 d-flex align-items-center">
+    <!-- Mask -->
+    <span class="mask bg-gradient-default opacity-8"></span>
+    <!-- Header container -->
+    <div class="container-fluid d-flex align-items-center">
+      <div class="row">
+        <div class="col-lg-7 col-md-10">
+          <h1 class="display-2 text-white">
+            Hello {{ userInfo?.username | titlecase }}
+          </h1>
+          <p class="text-white mt-0 mb-5">
+            This is your profile page. You can update your contact information
+            and add information that you'd like people to know about you.
+          </p>
+          <a (click)="onEdit()" class="btn btn-info">Edit profile</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Page content -->
+  <div class="container-fluid mt--7">
+    <div class="row">
+      <div class="col-xl-4 order-xl-2 mb-5 mb-xl-0">
+        <div class="card card-profile shadow">
+          <div class="row justify-content-center">
+            <div class="col-lg-3 order-lg-2">
+              <div class="card-profile-image">
+                <a>
+                  <img
+                    [src]="userInfo?.avatar || imageDefault"
+                    class="rounded-circle"
+                  />
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <div class="card-body pt-4 pt-md-4">
+            <div class="row">
+              <div class="col">
+                <div
+                  class="card-profile-stats d-flex justify-content-center mt-5"
+                >
+                  <!-- <div>
+                    <span class="description"></span>
+                  </div> -->
+                </div>
+              </div>
+            </div>
+            <div class="text-center mt-5">
+              <h3 style="font-size: 24px">
+                {{ userInfo?.username | titlecase }}
+              </h3>
+              <div class="h5 font-weight-300">
+                {{ userInfo?.email }}
+              </div>
+              <!-- <div class="h5 mt-4">
+                <i class="ni business_briefcase-24 mr-2"></i>Solution Manager -
+                Creative Tim Officer
+              </div>
+              <div>
+                <i class="ni education_hat mr-2"></i>University of Computer
+                Science
+              </div> -->
+              <hr class="my-4" />
+              <div class="px-3">
+                <p>Hope you have a great experience with our service!</p>
+              </div>
+              <!-- <a href="#">Show more</a> -->
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-8 order-xl-1">
+        <div class="card bg-secondary shadow">
+          <div class="card-header bg-white border-0">
+            <div class="row align-items-center">
+              <div class="col-8">
+                <h3 class="mb-0">My account</h3>
+              </div>
+            </div>
+          </div>
+          <div class="card-body">
+            <form>
+              <h6 class="heading-small text-muted mb-4">
+                {{ userInfo?.role }} information
+              </h6>
+              <div class="pl-lg-4">
+                <div class="row">
+                  <div class="col-lg-4">
+                    <div class="form-group focused">
+                      <label class="form-control-label" for="input-username"
+                        >{{ userInfo?.role | titlecase }}name</label
+                      >
+                      <input
+                        type="text"
+                        id="input-username"
+                        class="form-control form-control-alternative"
+                        placeholder="Username"
+                        [value]="userInfo?.username"
+                        #username
+                        [disabled]="!isEditing"
+                      />
+                      <i
+                        *ngIf="isEditing"
+                        (click)="onChangeUserInfo('username', username.value)"
+                        class="fa-solid fa-pen"
+                      ></i>
+                    </div>
+                  </div>
+                  <div class="col-lg-8">
+                    <div class="form-group">
+                      <label class="form-control-label" for="input-email"
+                        >Email address</label
+                      >
+                      <input
+                        type="email"
+                        id="input-email"
+                        class="form-control form-control-alternative"
+                        placeholder="Email"
+                        #email
+                        [value]="userInfo?.email"
+                        [disabled]="!isEditing"
+                      />
+                      <i
+                        *ngIf="isEditing"
+                        (click)="onChangeUserInfo('email', email.value)"
+                        class="fa-solid fa-pen"
+                      ></i>
+                      <span
+                        *ngIf="userInfo?.isEmailVerified"
+                        class="email-verified"
+                      >
+                        <i class="fa-solid fa-circle-check"></i>
+                      </span>
+                      <span
+                        *ngIf="!userInfo?.isEmailVerified"
+                        class="not-verified"
+                      >
+                        <i class="fa-solid fa-circle-xmark"></i>
+                      </span>
+                    </div>
+                  </div>
+
+                  <div class="col-12">
+                    <div class="form-group">
+                      <label class="form-control-label" for="input-image-url"
+                        >Image URL</label
+                      >
+                      <input
+                        type="text"
+                        id="input-image-url"
+                        class="form-control form-control-alternative"
+                        placeholder="Image URL"
+                        #avatar
+                        [value]="userInfo?.avatar || null"
+                        [disabled]="!isEditing"
+                      />
+                      <i
+                        *ngIf="isEditing"
+                        (click)="onChangeUserInfo('avatar', avatar.value)"
+                        class="fa-solid fa-pen"
+                      ></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <hr class="my-4" />
+              <!-- Address -->
+              <h6 class="heading-small text-muted mb-4">Contact information</h6>
+              <div class="pl-lg-4">
+                <div class="row">
+                  <div class="col-lg-6">
+                    <div class="form-group focused">
+                      <label class="form-control-label" for="input-address"
+                        >Address</label
+                      >
+                      <input
+                        id="input-address"
+                        class="form-control form-control-alternative"
+                        placeholder="Home Address"
+                        value="Duong Khue, Cau Giay"
+                        type="text"
+                        disabled
+                      />
+                    </div>
+                  </div>
+
+                  <div class="col-lg-6">
+                    <div class="form-group focused">
+                      <label class="form-control-label" for="input-phone"
+                        >Phone Number</label
+                      >
+                      <input
+                        id="input-phone"
+                        class="form-control form-control-alternative"
+                        placeholder="Phone Number"
+                        [value]="userInfo?.contact"
+                        #contact
+                        type="text"
+                        [disabled]="!isEditing"
+                      />
+                      <i
+                        *ngIf="isEditing"
+                        (click)="onChangeUserInfo('contact', contact.value)"
+                        class="fa-solid fa-pen"
+                      ></i>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-lg-4">
+                    <div class="form-group focused">
+                      <label class="form-control-label" for="input-city"
+                        >City</label
+                      >
+                      <input
+                        type="text"
+                        id="input-city"
+                        class="form-control form-control-alternative"
+                        placeholder="City"
+                        value="Ha Noi"
+                        disabled
+                      />
+                    </div>
+                  </div>
+                  <div class="col-lg-4">
+                    <div class="form-group focused">
+                      <label class="form-control-label" for="input-country"
+                        >Country</label
+                      >
+                      <input
+                        type="text"
+                        id="input-country"
+                        class="form-control form-control-alternative"
+                        placeholder="Country"
+                        value="Viet Nam"
+                        disabled
+                      />
+                    </div>
+                  </div>
+                  <div class="col-lg-4">
+                    <div class="form-group">
+                      <label class="form-control-label" for="input-country"
+                        >Postal code</label
+                      >
+                      <input
+                        type="number"
+                        id="input-postal-code"
+                        class="form-control form-control-alternative"
+                        placeholder="Postal code"
+                        value="100000"
+                        disabled
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-email-verification
+  *ngIf="!userInfo?.isEmailVerified"
+  (onLoading)="isLoading = $event"
+></app-email-verification>
+
+<app-footer></app-footer>

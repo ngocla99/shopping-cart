@@ -1,0 +1,124 @@
+.sign-up {
+  color: #fff;
+  height: 100vh;
+  background-color: #093545;
+  overflow: hidden;
+  position: relative;
+}
+
+.icon-home {
+  position: absolute;
+  top: 7%;
+  right: 7%;
+}
+
+i {
+  font-size: 32px;
+  color: #fff;
+}
+
+i:hover {
+  color: #ccc;
+}
+
+form {
+  margin-top: 146px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+}
+
+h1 {
+  font-size: 64px;
+  margin-bottom: 40px;
+}
+
+input,
+input:focus {
+  background-color: #224957 !important;
+  border: 0;
+  outline: none;
+}
+
+input {
+  border-radius: 10px;
+  width: 300px;
+  padding: 12px 18px;
+  margin-bottom: 32px;
+  color: #fff;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 30px #224957 inset !important;
+  -webkit-text-fill-color: #fff !important;
+}
+
+.input {
+  position: relative;
+}
+
+.alert-sign {
+  position: absolute;
+  top: 50px;
+  left: 18px;
+  font-weight: bolder;
+  font-size: 10px;
+  letter-spacing: 1.2px;
+  margin: 0px;
+  width: 100%;
+  text-align: left;
+  color: #dc3545db;
+}
+
+::placeholder {
+  color: #fff;
+  font-size: 14px;
+}
+
+[type="password"] {
+  margin-bottom: 26px;
+}
+
+span {
+  font-size: 14px;
+  line-height: 17px;
+  letter-spacing: 0.1em;
+  margin-bottom: 21px;
+}
+
+a {
+  font-weight: 500;
+  color: #20df7f !important;
+  cursor: pointer;
+  text-decoration: none !important;
+}
+
+a:hover {
+  text-decoration: none !important;
+  color: #20df7f !important;
+  border-bottom: 1px solid currentcolor;
+}
+
+button {
+  color: #fff;
+  width: 300px;
+  padding: 13px;
+  background: #20df7f;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+  border: 0;
+}
+
+button:active {
+  background: #1dc972;
+  color: #224957;
+}
+
+.wave-svg {
+  position: absolute;
+  bottom: -35px;
+}

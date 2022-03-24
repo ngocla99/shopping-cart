@@ -1,0 +1,102 @@
+<section class="user">
+  <div class="box-user text-center">
+    <div
+      *ngIf="isSignedIn"
+      class="avatar d-flex align-items-center justify-content-center con-tooltip left"
+    >
+      <a routerLink="/auth/my-profile"
+        ><img [src]="user?.avatar || imageDefault" alt="Image Not Found"
+      /></a>
+      <div class="tooltip">
+        <p class="m-0">Profile</p>
+      </div>
+    </div>
+    <div
+      *ngIf="!isAdmin && isSignedIn"
+      class="cart d-flex align-items-center justify-content-center con-tooltip left"
+    >
+      <a routerLink="/cart"><i class="fa-solid fa-cart-shopping" ></i><span class="total-item">{{totalItems}}</span></a>
+      <div class="tooltip">
+        <p class="m-0">Cart</p>
+      </div>
+    </div>
+    <div
+      *ngIf="!isAdmin && isSignedIn"
+      class="cart d-flex align-items-center justify-content-center con-tooltip left"
+    >
+      <a routerLink="/list-orders"><i class="fa-solid fa-list"></i></a>
+      <div class="tooltip">
+        <p class="m-0">My orders</p>
+      </div>
+    </div>
+    <div
+      *ngIf="isAdmin"
+      class="cart d-flex align-items-center justify-content-center con-tooltip left"
+    >
+      <a routerLink="/admin"><i class="fa-solid fa-table"></i></a>
+      <div class="tooltip">
+        <p class="m-0">Dashboard</p>
+      </div>
+    </div>
+    <div
+      *ngIf="isSignedIn"
+      class="log-out d-flex align-items-center justify-content-center con-tooltip left"
+    >
+      <a (click)="onLogout()"
+        ><i class="fa-solid fa-arrow-right-from-bracket ms-2"></i
+      ></a>
+      <div class="tooltip">
+        <p class="m-0">Logout</p>
+      </div>
+    </div>
+    <div
+      *ngIf="!isSignedIn"
+      class="log-in d-flex align-items-center justify-content-center con-tooltip left"
+    >
+      <a routerLink="/auth/sign-in"
+        ><i class="fa-solid fa-arrow-right-to-bracket"></i
+      ></a>
+      <div class="tooltip">
+        <p class="m-0">Login</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="menu-responsive">
+  <div id="circularMenu" class="circular-menu circular-menu-left">
+    <a
+      class="floating-btn"
+      onclick="document.getElementById('circularMenu').classList.toggle('active');"
+    >
+      <i class="fa fa-plus"></i>
+    </a>
+
+    <menu class="items-wrapper">
+      <a *ngIf="isSignedIn" class="menu-item" (click)="onLogout()"
+        ><i class="fa-solid fa-arrow-right-from-bracket"></i
+      ></a>
+      <a *ngIf="!isSignedIn" class="menu-item" routerLink="/auth/sign-in"
+        ><i class="fa-solid fa-arrow-right-to-bracket"></i
+      ></a>
+      <a
+        *ngIf="!isAdmin && isSignedIn"
+        routerLink="/list-orders"
+        class="menu-item fa-solid fa-list"
+      ></a>
+      <a
+        *ngIf="!isAdmin && isSignedIn"
+        routerLink="/cart"
+        class="menu-item fa-solid fa-cart-shopping"
+      ></a>
+      <a
+        *ngIf="isAdmin"
+        routerLink="/admin"
+        class="menu-item fa-solid fa-table"
+      ></a>
+      <a *ngIf="isSignedIn" routerLink="/auth/my-profile" class="menu-item"
+        ><img [src]="user?.avatar || imageDefault" alt="User Avatar"
+      /></a>
+    </menu>
+  </div>
+</section>

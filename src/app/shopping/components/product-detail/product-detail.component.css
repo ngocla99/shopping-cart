@@ -1,0 +1,148 @@
+* {
+  padding: 0;
+
+  box-sizing: border-box;
+}
+i.home {
+  font-size: 1.4rem;
+
+  color: #585858;
+}
+
+section {
+}
+
+section .content {
+}
+
+section .content .content__infor {
+}
+
+section .content .content__infor .content__infor__left {
+}
+
+section .content .content__infor .content__infor__left .img-product {
+  max-width: 394px;
+  max-height: 294px;
+}
+
+section .content .content__infor .content__infor__right {
+  width: 500px;
+}
+
+section .content .content__infor .content__infor__right hr {
+  height: 2px;
+}
+
+section .content .content__infor .content__infor__right .top {
+}
+
+section .content .content__infor .content__infor__right .top .product-name {
+}
+
+section .content .content__infor .content__infor__right .top .rating {
+}
+
+section
+  .content
+  .content__infor
+  .content__infor__right
+  .top
+  .rating
+  span
+  i.star {
+  color: #c1c8ce;
+}
+
+section .content .content__infor .content__infor__right .bottom {
+}
+
+section .content .content__infor .content__infor__right .bottom .product-price {
+  color: #224957;
+}
+
+section .content .content__infor .content__infor__right .bottom .available {
+}
+
+section
+  .content
+  .content__infor
+  .content__infor__right
+  .bottom
+  .available
+  .stock {
+  width: 300px;
+}
+
+section
+  .content
+  .content__infor
+  .content__infor__right
+  .bottom
+  .available
+  .accessories {
+  width: 300px;
+}
+
+section
+  .content
+  .content__infor
+  .content__infor__right
+  .bottom
+  .available
+  .number {
+  width: 300px;
+}
+
+section.center {
+}
+
+section.center .center__left {
+}
+
+.product-img {
+  max-width: 90px;
+  max-height: 90px;
+}
+
+.product-img img {
+  width: 100%;
+  height: auto;
+}
+
+section.center .center__right {
+}
+
+section.center .center__right .decrease,
+.increase {
+  width: 60px;
+}
+
+section.center .center__right .btn {
+  height: 40px;
+}
+
+section.center .center__right .btn:focus {
+  box-shadow: none;
+}
+
+section.center .center__right .number {
+  background-color: #f8f9fa;
+
+  display: inline-block;
+  height: 40px;
+  line-height: 40px;
+}
+
+section.center .center__right .btn-add {
+  height: 40px;
+
+  padding: 0 10px;
+
+  background-color: #093545;
+  color: white;
+}
+
+section.bottom {
+  padding: 30px 112px;
+}

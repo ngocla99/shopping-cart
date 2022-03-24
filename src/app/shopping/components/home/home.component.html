@@ -35,7 +35,10 @@
       <ul
         class="list-unstyled d-flex justify-content-between align-items-center"
       >
-        <li class="mb-5" *ngFor="let product of allProducts | filter:searchStr; let i = index">
+        <li
+          class="mb-5"
+          *ngFor="let product of allProducts | filter: searchStr; let i = index"
+        >
           <div
             class="product-item d-flex justify-content-between align-items-center"
             *ngFor="let img of product.images"
@@ -43,7 +46,7 @@
             <div class="left">
               <img
                 (click)="handleDetail(product.id)"
-                src="{{img.url}}"
+                src="{{ img.url | validURL: 'product' }}"
                 alt=""
               />
             </div>
@@ -77,6 +80,10 @@
                     <i
                       class="fa-solid fa-star me-1"
                       *ngFor="let item of ratings[i]"
+                    ></i>
+                    <i
+                      class="fa-regular fa-star me-1"
+                      *ngFor="let item of unRatings[i]"
                     ></i
                     >&nbsp;&nbsp;&nbsp;Sold
                     <span style="font-weight: 500">{{
@@ -85,7 +92,10 @@
                   </p>
                 </div>
                 <div class="add-cart">
-                  <i class="fa-solid fa-cart-shopping me-2" (click)="addToCart(product)"></i>
+                  <i
+                    class="fa-solid fa-cart-shopping me-2"
+                    (click)="addToCart(product)"
+                  ></i>
                 </div>
               </div>
             </div>
@@ -95,5 +105,11 @@
     </div>
   </section>
 </div>
+
+<app-pagination
+  *ngIf="!preLoad"
+  [totalPagesArr]="totalPagesArray"
+  [currentPage]="currentPage"
+></app-pagination>
 <app-navigation *ngIf="!preLoad"></app-navigation>
 <app-footer *ngIf="!preLoad"></app-footer>

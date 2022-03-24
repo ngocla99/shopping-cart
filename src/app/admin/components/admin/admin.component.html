@@ -27,7 +27,7 @@
         <div class="p-1 flex flex-row items-center dropdown">
           <img
             style="margin-right: 10px"
-            [src]="userInfo?.avatar || imageDefault"
+            [src]="userInfo?.avatar | validURL: 'user'"
             class="inline-block h-8 w-8 rounded-full"
             alt=""
           />
@@ -38,10 +38,14 @@
             data-bs-toggle="dropdown"
             aria-expanded="false"
           >
-          {{userInfo?.username | titlecase}}
+            {{ userInfo?.username | titlecase }}
           </button>
           <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-            <li><a class="dropdown-item" routerLink="/auth/my-profile">My Profile</a></li>
+            <li>
+              <a class="dropdown-item" routerLink="/auth/my-profile"
+                >My Profile</a
+              >
+            </li>
             <li><a class="dropdown-item" href="#">Notifications</a></li>
             <li><a class="dropdown-item" href="#">Logout</a></li>
           </ul>

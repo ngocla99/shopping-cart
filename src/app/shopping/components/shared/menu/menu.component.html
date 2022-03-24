@@ -30,7 +30,7 @@
         class="menu-item fa-solid fa-table"
       ></a>
       <a *ngIf="isSignedIn" routerLink="/auth/my-profile" class="menu-item"
-        ><img [src]="user?.avatar || imageDefault" alt="User avatar"
+        ><img [src]="user?.avatar | validURL: 'user'" alt="User avatar"
       /></a>
       <a *ngIf="isSignedIn" routerLink="/" class="menu-item"
         ><i class="fa-solid fa-house"></i

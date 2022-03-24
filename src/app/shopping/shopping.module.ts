@@ -13,6 +13,7 @@ import { NavigationComponent } from './components/home/navigation/navigation.com
 import { FormsModule } from '@angular/forms';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { MenuComponent } from './components/shared/menu/menu.component';
+import { PaginationComponent } from './components/home/pagination/pagination.component';
 @NgModule({
   declarations: [
     ShoppingComponent,
@@ -22,6 +23,7 @@ import { MenuComponent } from './components/shared/menu/menu.component';
     ListOrdersComponent,
     NavigationComponent,
     MenuComponent,
+    PaginationComponent,
   ],
   imports: [
     CommonModule,

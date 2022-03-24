@@ -6,16 +6,17 @@ import { UserService } from 'src/app/shared/services/user/user.service';
 @Component({
   selector: 'app-admin',
   templateUrl: './admin.component.html',
-  styleUrls: ['./admin.component.css']
+  styleUrls: ['./admin.component.css'],
 })
 export class AdminComponent implements OnInit {
-
   isLoading = false;
   isEditing = false;
   userInfo!: UserInfo;
-  imageDefault = this.userService.DEFAULT_IMAGE_URL;
 
-  constructor(private userService: UserService, private swalAlert: SwalAlertService,) { }
+  constructor(
+    private userService: UserService,
+    private swalAlert: SwalAlertService
+  ) {}
 
   ngOnInit(): void {
     this.isLoading = true;
@@ -31,5 +32,4 @@ export class AdminComponent implements OnInit {
       }
     );
   }
-
 }

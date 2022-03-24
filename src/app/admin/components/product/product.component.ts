@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { ProductService } from 'src/app/shared/services/product.service';
-import { Observable, Subject } from 'rxjs';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/internal/operators/takeUntil';
+import { ProductService } from 'src/app/shared/services/product/product.service';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -22,14 +22,16 @@ export class ProductComponent implements OnInit {
   public showUpdateModal: any;
   public isCreate: any;
   submitted = false;
-  keywords: any
+  keywords: any;
   urlForm!: FormGroup;
-  public totalItems!:number;
+  public totalItems!: number;
 
   allProducts: any[] = [];
 
-  constructor(private fb: FormBuilder, private productService: ProductService) { 
-  }
+  constructor(
+    private fb: FormBuilder,
+    private productService: ProductService
+  ) {}
 
   ngOnInit(): void {
     this.isLoading = true;
@@ -40,10 +42,10 @@ export class ProductComponent implements OnInit {
   }
 
   getAllProducts() {
-    this.productService.getAllProducts().subscribe(res => {
+    this.productService.getAllProducts().subscribe((res) => {
       this.isLoading = false;
       this.allProducts = res?.data?.result;
-      this.totalItems = res?.data?.total
+      this.totalItems = res?.data?.total;
       console.log(this.allProducts);
     });
   }

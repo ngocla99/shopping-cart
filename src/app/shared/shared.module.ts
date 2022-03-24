@@ -5,6 +5,7 @@ import { EmailVerificationComponent } from './components/email-verification/emai
 import { TruncatePipe } from './pipes/truncate.pipe';
 import { FooterComponent } from './components/footer/footer.component';
 import { PreloaderComponent } from './components/preloader/preloader.component';
+import { ValidURLPipe } from './pipes/valid-url.pipe';
 
 @NgModule({
   declarations: [
@@ -13,12 +14,14 @@ import { PreloaderComponent } from './components/preloader/preloader.component';
     TruncatePipe,
     FooterComponent,
     PreloaderComponent,
+    ValidURLPipe,
   ],
   imports: [CommonModule],
   exports: [
     LoadingPageComponent,
     EmailVerificationComponent,
     TruncatePipe,
+    ValidURLPipe,
     FooterComponent,
     PreloaderComponent,
   ],

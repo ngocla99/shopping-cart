@@ -1,0 +1,74 @@
+/* === Pagination === */
+.pagination {
+  display: flex;
+  padding-left: 0;
+  list-style: none;
+  margin: 40px 0 0;
+}
+.pagination li {
+  list-style-type: none;
+  margin: 0 5px;
+}
+
+.page-item.active .page-link {
+  z-index: 3;
+  color: #fff;
+  border-color: transparent;
+  background: #a5e9c7;
+  background: -webkit-linear-gradient(
+    bottom,
+    #a5e9c7 0%,
+    #17a15b 51%,
+    #a5e9c7 100%
+  );
+  background: linear-gradient(to top, #a5e9c7 0%, #1ab567 51%, #a5e9c7 100%);
+  background-size: auto 200%;
+  -webkit-box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.15);
+  -moz-box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.15);
+  box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.15);
+  -webkit-transition: all 0.2s ease-in-out;
+  -moz-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+}
+
+.page-link {
+  position: relative;
+  display: block;
+  color: #8f9bad;
+  border-radius: 50%;
+  font-size: 18px;
+  text-decoration: none;
+  border: solid 1px #ebebeb;
+  height: 45px;
+  line-height: 45px;
+  text-align: center;
+  padding: 0;
+  width: 45px;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
+    border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.page-link:hover {
+  z-index: 2;
+  color: #fff;
+  background: #a5e9c7;
+  background: -webkit-linear-gradient(
+    bottom,
+    #a5e9c7 0%,
+    #17a15b 51%,
+    #a5e9c7 100%
+  );
+  background: linear-gradient(to top, #a5e9c7 0%, #1ab567 51%, #a5e9c7 100%);
+  background-size: auto 200%;
+  border-color: transparent;
+}
+
+.page-item:first-child .page-link {
+  border-top-left-radius: 50%;
+  border-bottom-left-radius: 50%;
+}
+
+.page-item:last-child .page-link {
+  border-top-right-radius: 50%;
+  border-bottom-right-radius: 50%;
+}

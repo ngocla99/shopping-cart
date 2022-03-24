@@ -17,8 +17,6 @@ interface Params {
 })
 export class UserService {
   private readonly API_URL = 'http://137.184.207.13:5000/v1';
-  DEFAULT_IMAGE_URL =
-    'https://images.unsplash.com/photo-1626548307930-deac221f87d9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8Y3V0ZXxlbnwwfDJ8MHx8&auto=format&fit=crop&w=500&q=60';
 
   constructor(private http: HttpClient) {}
 

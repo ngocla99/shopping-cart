@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { OrderDetail, OrdersData } from 'src/app/shared/models/order.model';
 import { UserInfo } from 'src/app/shared/models/user.model';
-import { ProductService } from 'src/app/shared/services/product.service';
+import { ProductService } from 'src/app/shared/services/product/product.service';
 import { UserService } from 'src/app/shared/services/user/user.service';
 
 @Component({
@@ -16,7 +16,6 @@ export class ListOrdersComponent implements OnInit {
   index: number = 0;
   totalOrder: number = 0;
   myOrders: OrderDetail[] = [];
-  imageDefault = this.userService.DEFAULT_IMAGE_URL;
   constructor(
     private userService: UserService,
     private productService: ProductService

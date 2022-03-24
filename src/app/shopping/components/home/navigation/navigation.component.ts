@@ -4,7 +4,7 @@ import { UserInfo } from 'src/app/shared/models/user.model';
 import { AuthService } from 'src/app/shared/services/auth/auth.service';
 import { SwalAlertService } from 'src/app/shared/services/others/swal-alert.service';
 import { UserService } from 'src/app/shared/services/user/user.service';
-import {CartService} from "../../../../shared/services/cart/cart.service";
+import { CartService } from '../../../../shared/services/cart/cart.service';
 
 @Component({
   selector: 'app-navigation',
@@ -12,7 +12,6 @@ import {CartService} from "../../../../shared/services/cart/cart.service";
   styleUrls: ['./navigation.component.css'],
 })
 export class NavigationComponent implements OnInit {
-  imageDefault = this.userService.DEFAULT_IMAGE_URL;
   user!: UserInfo;
   isSignedIn = false;
   isAdmin = false;
@@ -22,8 +21,7 @@ export class NavigationComponent implements OnInit {
     private authService: AuthService,
     private swalAlert: SwalAlertService,
     private router: Router,
-    private cartService: CartService,
-
+    private cartService: CartService
   ) {}
 
   ngOnInit(): void {
@@ -32,11 +30,9 @@ export class NavigationComponent implements OnInit {
       this.isAdmin = user.role === 'admin';
     });
     this.isSignedIn = this.authService.isSignedIn();
-    this.cartService.getProducts().subscribe(data => {
-        this.totalItems = data.length;
-      }
-    )
-
+    this.cartService.getProducts().subscribe((data) => {
+      this.totalItems = data.length;
+    });
   }
 
   onLogout() {

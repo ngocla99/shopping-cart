@@ -11,7 +11,6 @@ import { UserService } from 'src/app/shared/services/user/user.service';
   styleUrls: ['./menu.component.css'],
 })
 export class MenuComponent implements OnInit {
-  imageDefault = this.userService.DEFAULT_IMAGE_URL;
   user!: UserInfo;
   isSignedIn = false;
   isAdmin = false;

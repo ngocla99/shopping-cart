@@ -5,7 +5,7 @@
       class="avatar d-flex align-items-center justify-content-center con-tooltip left"
     >
       <a routerLink="/auth/my-profile"
-        ><img [src]="user?.avatar || imageDefault" alt="Image Not Found"
+        ><img [src]="user?.avatar | validURL: 'user'" alt="Image Not Found"
       /></a>
       <div class="tooltip">
         <p class="m-0">Profile</p>
@@ -15,7 +15,10 @@
       *ngIf="!isAdmin && isSignedIn"
       class="cart d-flex align-items-center justify-content-center con-tooltip left"
     >
-      <a routerLink="/cart"><i class="fa-solid fa-cart-shopping" ></i><span class="total-item">{{totalItems}}</span></a>
+      <a routerLink="/cart"
+        ><i class="fa-solid fa-cart-shopping"></i
+        ><span *ngIf="totalItems" class="total-item">{{ totalItems }}</span></a
+      >
       <div class="tooltip">
         <p class="m-0">Cart</p>
       </div>
@@ -95,7 +98,7 @@
         class="menu-item fa-solid fa-table"
       ></a>
       <a *ngIf="isSignedIn" routerLink="/auth/my-profile" class="menu-item"
-        ><img [src]="user?.avatar || imageDefault" alt="User Avatar"
+        ><img [src]="user?.avatar | validURL: 'user'" alt="User Avatar"
       /></a>
     </menu>
   </div>

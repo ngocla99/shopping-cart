@@ -1,6 +1,5 @@
 import {Injectable, OnInit} from '@angular/core';
 import {BehaviorSubject} from "rxjs";
-import {Product} from "../../models/product";
 import {AuthService} from "../auth/auth.service";
 
 @Injectable({

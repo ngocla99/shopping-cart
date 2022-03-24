@@ -13,7 +13,6 @@ export class SettingComponent implements OnInit {
   isLoading = false;
   isEditing = false;
   userInfo!: UserInfo;
-  imageDefault = this.userService.DEFAULT_IMAGE_URL;
 
   constructor(
     private userService: UserService,

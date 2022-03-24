@@ -23,7 +23,7 @@
               <span class="avatar avatar-sm rounded-circle">
                 <img
                   alt="Image placeholder"
-                  [src]="userInfo?.avatar || imageDefault"
+                  [src]="userInfo?.avatar | validURL: 'user'"
                 />
               </span>
               <div class="media-body ml-2 d-none d-lg-block">
@@ -109,7 +109,7 @@
               <div class="card-profile-image">
                 <a>
                   <img
-                    [src]="userInfo?.avatar || imageDefault"
+                    [src]="userInfo?.avatar | validURL: 'user'"
                     class="rounded-circle"
                   />
                 </a>

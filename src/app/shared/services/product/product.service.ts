@@ -2,9 +2,9 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
-import * as ProductModel from '../models/product.model';
-import * as OrderModel from '../models/order.model';
 import { map } from 'rxjs/operators';
+import { OrderUpdate } from '../../models/order.model';
+import { ProductCreate, ProductUpdate } from '../../models/product.model';
 
 @Injectable({
   providedIn: 'root',
@@ -23,7 +23,7 @@ export class ProductService {
     return this.http.get<any>(this.API_URL + `/orders/${id}`);
   }
 
-  updateOrder(update: OrderModel.OrderUpdate, id: number) {
+  updateOrder(update: OrderUpdate, id: number) {
     return this.http.patch<any>(this.API_URL + `/orders/${id}`, update);
   }
 
@@ -38,7 +38,7 @@ export class ProductService {
     return this.http.get<any>(`${this.API_URL}/products`);
   }
 
-  createProduct(product: ProductModel.productCreate) {
+  createProduct(product: ProductCreate) {
     return this.http.post<any>(this.API_URL + '/products', product);
   }
 
@@ -46,7 +46,7 @@ export class ProductService {
     return this.http.get(this.API_URL + `/products/${id}`);
   }
 
-  updateProductById(product: ProductModel.productUpdate, id: number) {
+  updateProductById(product: ProductUpdate, id: number) {
     return this.http.patch<any>(this.API_URL + `/products/${id}`, product);
   }
 

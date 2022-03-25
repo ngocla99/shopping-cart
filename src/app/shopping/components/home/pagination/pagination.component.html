@@ -1,7 +1,7 @@
-<nav class="mb-5">
+<nav *ngIf="totalPagesArr.length !== 1" class="mb-5">
   <ul class="pagination justify-content-center">
     <li
-      *ngFor="let page of totalPagesArr"
+      *ngFor="let page of totalPagesArr; trackBy: trackByFn"
       class="page-item {{ currentPage === page ? 'active' : '' }}"
     >
       <span

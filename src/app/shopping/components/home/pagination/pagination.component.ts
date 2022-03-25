@@ -18,4 +18,8 @@ export class PaginationComponent implements OnInit {
 
     window.scrollTo(0, 300);
   }
+
+  trackByFn(index: number, page: number) {
+    return index;
+  }
 }

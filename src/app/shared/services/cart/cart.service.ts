@@ -1,55 +1,52 @@
-import {Injectable, OnInit} from '@angular/core';
-import {BehaviorSubject} from "rxjs";
-import {AuthService} from "../auth/auth.service";
+import { HttpClient } from '@angular/common/http';
+import { Injectable, OnInit } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
+import { AuthService } from '../auth/auth.service';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class CartService {
-  private API_URL = "http://137.184.207.13:5000/v1/orders";
+  private API_URL = 'http://137.184.207.13:5000/v1/orders';
   private myOrder: any = [];
   private cartItemLists: any = [];
   private productList = new BehaviorSubject<any>([]);
   private userID: number = 0;
   private itemInCart: any[] = [];
 
-
-
-  constructor(private authService: AuthService) {
-  }
+  constructor(private authService: AuthService, private http: HttpClient) {}
 
   getProducts() {
     return this.productList.asObservable();
   }
 
-  // setProduct(product: any) {
-  //   this.myOrder.push(...product);
-  //   this.productList.next(product);
-  // }
+  creatMyOrder() {
+    const cart = this.getCartInLocalStorage();
+    return this.http.post(this.API_URL, cart);
+  }
 
   addToCart(product: any, decrease = false) {
     // this.myOrder.push(product);
     const userId = this.authService.getUserInLocalStorage().id;
     let cart = {
       order: {
-        paymentMethod: "",
-        address: "",
+        paymentMethod: '',
+        address: '',
         contact: null,
         totalPrice: product.price,
-        userId: userId
+        userId: userId,
       },
       itemArr: [
         {
           productId: product.id,
-          name: product.name,
           quantity: 1,
           price: product.price,
-          total: product.price
-        }
-      ]
+          total: product.price,
+        },
+      ],
     };
 
-    let checkLocalStorge = JSON.parse(localStorage.getItem('cart') || 'null');
+    let checkLocalStorge = this.getCartInLocalStorage();
     if (checkLocalStorge) {
       const cart = checkLocalStorge;
       const productsOrder = cart.itemArr;
@@ -57,36 +54,33 @@ export class CartService {
       for (let [index, item] of productsOrder.entries()) {
         if (item.productId == product.id) {
           check = true;
-          if(!decrease){
+          if (!decrease) {
             item.quantity += 1;
             item.total += item.price;
-          }else{
+          } else {
             item.quantity -= 1;
             item.total -= item.price;
-            if (item.quantity == 0){
+            if (item.quantity == 0) {
               productsOrder.splice(index, 1);
-              console.log(productsOrder)
+              console.log(productsOrder);
             }
           }
         }
       }
       if (!check) {
-        productsOrder.push(
-          {
-            productId: product.id,
-            name: product.name,
-            quantity: 1,
-            price: product.price,
-            total: product.price
-          }
-        )
+        productsOrder.push({
+          productId: product.id,
+          quantity: 1,
+          price: product.price,
+          total: product.price,
+        });
       }
-      window.localStorage.setItem('cart', JSON.stringify(cart));
+      this.saveCartToLocalStorage(cart);
     } else {
       this.itemInCart.push(cart);
-      window.localStorage.setItem('cart', JSON.stringify(cart));
+      this.saveCartToLocalStorage(cart);
     }
-    this.myOrder = JSON.parse(localStorage.getItem('cart') || 'null');
+    this.myOrder = this.getCartInLocalStorage();
     this.cartItemLists = this.myOrder.itemArr;
     this.productList.next(this.myOrder.itemArr);
   }
@@ -96,11 +90,39 @@ export class CartService {
       if (product.productId === data.productId) {
         this.cartItemLists.splice(index, 1);
       }
-      window.localStorage.setItem('cart', JSON.stringify(this.myOrder));
-      if(this.cartItemLists.length == 0){
-        window.localStorage.removeItem('cart');
+      this.saveCartToLocalStorage(this.myOrder);
+      if (this.cartItemLists.length == 0) {
+        this.deleteCartInLocalStorage();
       }
-    })
+    });
     this.productList.next(this.cartItemLists);
+  }
+
+  saveBillInformation(billInfo: any, totalPrice: number) {
+    const cart = this.getCartInLocalStorage();
+
+    if (!cart) {
+      return;
+    }
+
+    const order = cart.order;
+    order.address = billInfo.address;
+    order.contact = billInfo.contact;
+    order.paymentMethod = billInfo.paymentMethod;
+    order.totalPrice = totalPrice;
+
+    this.saveCartToLocalStorage(cart);
+  }
+
+  getCartInLocalStorage() {
+    return JSON.parse(localStorage.getItem('cart') || 'null');
+  }
+
+  saveCartToLocalStorage(cart: any) {
+    localStorage.setItem('cart', JSON.stringify(cart));
+  }
+
+  deleteCartInLocalStorage() {
+    localStorage.removeItem('cart');
   }
 }

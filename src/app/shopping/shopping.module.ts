@@ -14,6 +14,8 @@ import { FormsModule } from '@angular/forms';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { MenuComponent } from './components/shared/menu/menu.component';
 import { PaginationComponent } from './components/home/pagination/pagination.component';
+import { ModalBillComponent } from './components/cart/modal-bill/modal-bill.component';
+import { ModalOrderComponent } from './components/list-orders/modal-order/modal-order.component';
 @NgModule({
   declarations: [
     ShoppingComponent,
@@ -24,6 +26,8 @@ import { PaginationComponent } from './components/home/pagination/pagination.com
     NavigationComponent,
     MenuComponent,
     PaginationComponent,
+    ModalBillComponent,
+    ModalOrderComponent,
   ],
   imports: [
     CommonModule,

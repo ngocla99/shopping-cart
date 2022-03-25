@@ -1,0 +1,102 @@
+<!-- Modal dialog -->
+<div class="modal fade show" aria-modal="true" role="dialog">
+  <div class="modal-dialog modal-simple" role="document">
+    <div class="modal-content p-3 p-md-5">
+      <div class="modal-body">
+        <div class="text-center mb-4">
+          <h3>Billing Information</h3>
+          <p>Updating user details will receive a privacy audit.</p>
+        </div>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+          (click)="hideModal()"
+        ></button>
+        <form
+          id="editUserForm"
+          #form="ngForm"
+          (submit)="onSubmit(form)"
+          class="row g-3"
+        >
+          <div class="col-12">
+            <label class="form-label" for="address">Address</label>
+            <input
+              type="text"
+              id="address"
+              class="form-control"
+              placeholder="Shipping address"
+              name="address"
+              ngModel
+              required
+            />
+            <div class="invalid-feedback"></div>
+          </div>
+
+          <div class="col-12 col-md-6">
+            <label class="form-label" for="contact">Contact</label>
+            <input
+              type="text"
+              id="contact"
+              class="form-control"
+              placeholder="Phone number"
+              name="contact"
+              ngModel
+              required
+            />
+          </div>
+          <div class="col-12 col-md-6">
+            <label class="form-label" for="paymentMethod">Payment Method</label>
+            <select
+              id="paymentMethod"
+              class="form-select"
+              aria-label="Default select example"
+              name="paymentMethod"
+              ngModel
+              required
+            >
+              <option value="Online" selected>Online</option>
+              <option value="Offline">Offline</option>
+            </select>
+          </div>
+
+          <div class="col-12">
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                value=""
+                id="defaultCheck3"
+                checked=""
+              />
+              <label class="form-check-label" for="defaultCheck3">
+                Use as a billing address?
+              </label>
+            </div>
+          </div>
+          <div class="col-12 text-center">
+            <button
+              type="submit"
+              [disabled]="form.invalid"
+              class="btn btn-primary me-sm-3 me-1"
+            >
+              Submit
+            </button>
+            <button
+              type="reset"
+              class="btn btn-label-secondary"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            >
+              Cancel
+            </button>
+          </div>
+          <div></div>
+          <input type="hidden" />
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal-backdrop fade show" (click)="hideModal()"></div>

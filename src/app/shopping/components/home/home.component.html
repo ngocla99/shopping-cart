@@ -21,11 +21,21 @@
     <ul
       class="list-categories mt-4 d-flex justify-content-start align-items-center list-unstyled"
     >
-      <li class="item text-center">Clothes</li>
-      <li class="item text-center">Fashion</li>
-      <li class="item text-center">Electronics</li>
-      <li class="item text-center">Books</li>
-      <li class="item text-center">Toys</li>
+      <li
+        class="item text-center {{ activeCategory === 'all' ? 'active' : '' }}"
+        (click)="getProductByCategory('all')"
+      >
+        All
+      </li>
+      <li
+        *ngFor="let category of categoryArray; trackBy: trackByFn"
+        class="item text-center {{
+          activeCategory === category ? 'active' : ''
+        }}"
+        (click)="getProductByCategory(category)"
+      >
+        {{ category | titlecase }}
+      </li>
       <a class="fw-bold more">more</a>
     </ul>
   </nav>
@@ -66,8 +76,16 @@
                 </div>
               </div>
               <div class="status d-flex align-items-center mb-5">
-                <p class="available text-center m-0 me-3">
-                  Available {{ product.countInStock }}
+                <p
+                  class="text-center m-0 me-3 {{
+                    +product.countInStock ? 'available' : 'out'
+                  }}"
+                >
+                  {{
+                    +product.countInStock
+                      ? "Available " + product.countInStock
+                      : "Out of stock"
+                  }}
                 </p>
                 <p class="discount m-0">25% off</p>
               </div>

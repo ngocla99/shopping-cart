@@ -92,7 +92,7 @@
               class="dataTables_wrapper dt-bootstrap5 no-footer"
             >
               <table class="table">
-                <thead class="table-dark">
+                <thead>
                   <tr>
                     <th
                       class="control"
@@ -310,68 +310,9 @@
 </div>
 <app-menu [isCart]="false"></app-menu>
 
-<!-- Modal dialog -->
-<div
-  class="modal fade dtr-bs-modal"
-  [ngClass]="{ modal: true, fade: true, 'dtr-bs-modal': true, show: showModal }"
-  aria-modal="true"
-  role="dialog"
->
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h4 class="modal-title">Details of Order</h4>
-        <button
-          type="button"
-          class="btn-close"
-          data-bs-dismiss="modal"
-          aria-label="Close"
-          (click)="showModal = false"
-        ></button>
-      </div>
-      <div class="modal-body">
-        <table class="table">
-          <tbody>
-            <tr data-dt-row="91" data-dt-column="1">
-              <td>Date:</td>
-              <td>
-                {{ myOrders[index]?.createdAt | date: "h:mm a, dd/MM/yyyy" }}
-              </td>
-            </tr>
-            <tr data-dt-row="91" data-dt-column="2">
-              <td>Status:</td>
-              <td>
-                <span
-                  class="badge me-1"
-                  [class]="myOrders[index]?.status?.toLowerCase()"
-                  >{{ myOrders[index]?.status }}</span
-                >
-              </td>
-            </tr>
-            <tr data-dt-row="91" data-dt-column="3">
-              <td>Payment:</td>
-              <td>{{ myOrders[index]?.paymentMethod }}</td>
-            </tr>
-            <tr data-dt-row="91" data-dt-column="4">
-              <td>Paid:</td>
-              <td>{{ myOrders[index]?.isPaid ? "Yes" : "No" }}</td>
-            </tr>
-            <tr data-dt-row="91" data-dt-column="5">
-              <td>Price:</td>
-              <td>${{ myOrders[index]?.totalPrice }}</td>
-            </tr>
-            <tr class="row-last" data-dt-row="91" data-dt-column="6">
-              <td>Address:</td>
-              <td>{{ myOrders[index]?.address | titlecase }}</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </div>
-</div>
-<div
-  class="modal-backdrop fade"
-  [ngClass]="{ 'modal-backdrop': true, fade: true, show: showModal }"
-  (click)="showModal = false"
-></div>
+<!-- Modal order -->
+<app-modal-order
+  *ngIf="showModal"
+  [order]="myOrders[index]"
+  (onHideModal)="showModal = false"
+></app-modal-order>

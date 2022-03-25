@@ -9,6 +9,7 @@ import { CartService } from '../../../shared/services/cart/cart.service';
   styleUrls: ['./cart.component.css'],
 })
 export class CartComponent implements OnInit {
+  showModal: boolean = false;
   data: any;
   products: any[] = [];
   public sumTotal: number = 0;
@@ -26,19 +27,7 @@ export class CartComponent implements OnInit {
   }
 
   onConfirm() {
-    Swal.fire({
-      title: 'Do you want to confirm payment?',
-      text: "You won't be able to revert this!",
-      icon: 'question',
-      showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Yes',
-    }).then((result) => {
-      if (result.isConfirmed) {
-        Swal.fire('Agree', 'Payment success', 'success');
-      }
-    });
+    this.showModal = true;
   }
 
   deleteCartItem(product: ProductDetail, index: number) {

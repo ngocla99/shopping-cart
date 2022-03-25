@@ -1,0 +1,56 @@
+<!-- Modal dialog -->
+<div class="modal fade dtr-bs-modal show" aria-modal="true" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Details of Order</h4>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+          (click)="hideModal()"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <table class="table">
+          <tbody>
+            <tr data-dt-row="91" data-dt-column="1">
+              <td>Date:</td>
+              <td>
+                {{ order?.createdAt | date: "h:mm a, dd/MM/yyyy" }}
+              </td>
+            </tr>
+            <tr data-dt-row="91" data-dt-column="2">
+              <td>Status:</td>
+              <td>
+                <span
+                  class="badge me-1"
+                  [class]="order?.status?.toLowerCase()"
+                  >{{ order?.status }}</span
+                >
+              </td>
+            </tr>
+            <tr data-dt-row="91" data-dt-column="3">
+              <td>Payment:</td>
+              <td>{{ order?.paymentMethod }}</td>
+            </tr>
+            <tr data-dt-row="91" data-dt-column="4">
+              <td>Paid:</td>
+              <td>{{ order?.isPaid ? "Yes" : "No" }}</td>
+            </tr>
+            <tr data-dt-row="91" data-dt-column="5">
+              <td>Price:</td>
+              <td>${{ order?.totalPrice }}</td>
+            </tr>
+            <tr class="row-last" data-dt-row="91" data-dt-column="6">
+              <td>Address:</td>
+              <td>{{ order?.address | titlecase }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal-backdrop fade show" (click)="hideModal()"></div>

@@ -64,6 +64,7 @@ export class AuthService {
     this.user.next(null);
 
     this.deleteUserInLocalStorage();
+    this.deleteCartInLocalStorage();
     if (this.tokenExpirationTimer) {
       clearTimeout(this.tokenExpirationTimer);
     }
@@ -199,6 +200,11 @@ export class AuthService {
     window.localStorage.removeItem('user');
   }
 
+  // Delete info user into local storage
+  deleteCartInLocalStorage() {
+    window.localStorage.removeItem('cart');
+  }
+
   // Get UserData in LocalStorage
   getUserInLocalStorage(): UserStore {
     return JSON.parse(localStorage.getItem('user') || 'null');
@@ -216,5 +222,16 @@ export class AuthService {
     uid += screen_info.pixelDepth || '';
 
     return uid;
+  }
+
+  alertSignIn() {
+    if (!this.isSignedIn()) {
+      this.swalAlert.goToSignIn().then((result) => {
+        if (result.isConfirmed) {
+          this.router.navigate(['/auth/sign-in']);
+        }
+      });
+      return;
+    }
   }
 }

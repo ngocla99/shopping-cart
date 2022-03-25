@@ -94,13 +94,28 @@ export class SwalAlertService {
     });
   }
 
-  titleAlertTimer(position: any, icon: any, title: string) {
+  titleAlertTimer(
+    position: any,
+    icon: any,
+    title: string,
+    confirmButton: boolean = false
+  ) {
     Swal.fire({
       position: position,
       icon: icon,
       title: title,
-      showConfirmButton: false,
+      showConfirmButton: confirmButton,
+      confirmButtonColor: '#1dc972',
       timer: 1500,
+    });
+  }
+
+  goToSignIn() {
+    return Swal.fire({
+      position: 'center',
+      title: 'You need Sign In',
+      confirmButtonColor: '#1dc972',
+      timer: 2000,
     });
   }
 

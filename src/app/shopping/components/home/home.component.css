@@ -37,6 +37,7 @@
 
 nav .list-categories .item {
   border: 1px solid rgba(214, 214, 214, 0.5);
+  cursor: pointer;
   border-radius: 30px;
   margin-right: 22px;
   padding: 12px 30px;
@@ -46,6 +47,12 @@ nav .list-categories .item {
   text-overflow: ellipsis;
   font-size: 16px;
   color: #474747;
+}
+
+nav .list-categories .item:hover,
+nav .list-categories .item.active {
+  border: 1px solid #20df7f;
+  color: #1dc972;
 }
 
 .more {
@@ -120,6 +127,16 @@ section.list-products .content ul li .product-item .left img {
   width: 100%;
   object-fit: cover;
   object-position: 50% 50%;
+  transform: scale(1);
+  transition: all 0.3s ease-in-out;
+}
+
+section.list-products .content ul li .product-item .left img:hover {
+  -webkit-transform: scale(1.07);
+  -moz-transform: scale(1.07);
+  -ms-transform: scale(1.07);
+  -o-transform: scale(1.07);
+  transform: scale(1.07);
 }
 
 @media screen and (max-width: 570px) {
@@ -200,6 +217,14 @@ section.list-products .content ul li .product-item .left img {
 section.list-products .content .right .status .available {
   font-size: 13px;
   background-color: rgba(0, 167, 17, 0.5);
+  color: white;
+  border-radius: 12px;
+  padding: 4px 21px;
+}
+
+section.list-products .content .right .status .out {
+  font-size: 13px;
+  background-color: rgba(255, 148, 70, 0.5);
   color: white;
   border-radius: 12px;
   padding: 4px 21px;

@@ -30,9 +30,15 @@ export class NavigationComponent implements OnInit {
       this.isAdmin = user.role === 'admin';
     });
     this.isSignedIn = this.authService.isSignedIn();
+
     this.cartService.getProducts().subscribe((data) => {
       this.totalItems = data.length;
     });
+
+    const cart = JSON.parse(localStorage.getItem('cart') || 'null');
+    if (cart) {
+      this.totalItems = cart.itemArr.length;
+    }
   }
 
   onLogout() {

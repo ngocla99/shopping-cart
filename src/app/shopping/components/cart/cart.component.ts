@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductDetail } from 'src/app/shared/models/product.model';
-import Swal from 'sweetalert2';
 import { CartService } from '../../../shared/services/cart/cart.service';
 
 @Component({

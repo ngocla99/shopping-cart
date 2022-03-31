@@ -38,6 +38,7 @@ export class CartService {
       },
       itemArr: [
         {
+          name: product.name,
           productId: product.id,
           quantity: 1,
           price: product.price,
@@ -69,6 +70,7 @@ export class CartService {
       }
       if (!check) {
         productsOrder.push({
+          name: product.name,
           productId: product.id,
           quantity: 1,
           price: product.price,

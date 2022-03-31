@@ -1,4 +1,4 @@
-<div class="container">
+<!-- <div class="container">
   <ng-container *ngIf="!checkEmptyCart; else nothing">
     <section class="content mt-4">
       <div class="row title d-flex align-items-center justify-content-between">
@@ -82,9 +82,93 @@
     </div>
   </ng-template>
 </div>
-<app-menu [isCart]="true"></app-menu>
 <app-modal-bill
-  *ngIf="showModal"
-  [totalPrice]="totalSum"
-  (onHideModal)="showModal = false"
-></app-modal-bill>
+*ngIf="showModal"
+[totalPrice]="totalSum"
+(onHideModal)="showModal = false"
+></app-modal-bill> -->
+
+<app-menu [isCart]="true"></app-menu>
+<!-- ORDER CHECKOUT -->
+
+<div class="content-wrapper">
+  <div class="container-xxl">
+    <div class="row">
+      <div class="col-md-8">
+        <h3 class="pb-3">Order</h3>
+        <div class="order">
+          <ul class="p-0 m-0">
+            <li
+              class="d-flex justify-content-between align-items-center py-3"
+              *ngFor="let product of products; let i = index"
+            >
+              <div class="info-product d-flex align-items-center">
+                <div class="img-product pe-4">
+                  <img
+                    src="https://images.unsplash.com/photo-1626548307930-deac221f87d9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8Y3V0ZXxlbnwwfDJ8MHx8&auto=format&fit=crop&w=500&q=60"
+                  />
+                </div>
+                <div class="description">
+                  <h5>{{ product?.name }}</h5>
+                  <p>Color: <span>Red/White</span></p>
+                  <p>Size: <span>L</span></p>
+                </div>
+              </div>
+              <div class="price-product">
+                <p class="text-price">${{ product?.price }}</p>
+              </div>
+              <div class="quantity-product">
+                <div class="d-flex align-items-center">
+                  <p class="pe-3">Quantity:</p>
+
+                  <div class="num-block skin-5 me-5">
+                    <div class="num-in">
+                      <span class="minus dis">-</span>
+                      <input type="text" class="in-num" value="1" readonly="" />
+                      <span class="plus">+</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="delete-product">
+                <i class="fa-solid fa-xmark"></i>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <h3 class="pb-3">Payment Summary</h3>
+        <div class="payment">
+          <div class="code d-flex justify-content-between mb-2">
+            <p>Transition code</p>
+            <h5>VC11566S</h5>
+          </div>
+          <div
+            class="coupon-code d-flex justify-content-between align-items-center"
+          >
+            <input type="text" placeholder="COUPON CODE" />
+            <button>Apply</button>
+          </div>
+          <hr />
+          <div class="d-flex justify-content-between mb-2">
+            <p>Order Summary</p>
+            <h5>$122</h5>
+          </div>
+          <div class="shipping d-flex justify-content-between mb-2">
+            <p>Shipping</p>
+            <h5>$5</h5>
+          </div>
+          <div class="d-flex justify-content-between mb-2">
+            <p>Total Amount</p>
+            <h5>$127</h5>
+          </div>
+          <hr />
+          <div class="check-out d-flex align-items-center w-100">
+            <button class="btn btn-primary w-100">Check out</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

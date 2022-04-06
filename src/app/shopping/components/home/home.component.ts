@@ -47,6 +47,8 @@ export class HomeComponent implements OnInit {
   initHome() {
     this.homeService.getAllProducts().subscribe((products: ProductDetail[]) => {
       this.getData(products);
+      // LOG
+      console.log(products);
     });
     this.user = this.authService.getUserInLocalStorage();
 

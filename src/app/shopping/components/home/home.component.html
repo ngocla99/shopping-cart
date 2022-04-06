@@ -51,12 +51,11 @@
         >
           <div
             class="product-item d-flex justify-content-between align-items-center"
-            *ngFor="let img of product.images"
           >
             <div class="left">
               <img
                 (click)="handleDetail(product.id)"
-                src="{{ img.url | validURL: 'product' }}"
+                src="{{ product.images[0].url | validURL: 'product' }}"
                 alt=""
               />
             </div>

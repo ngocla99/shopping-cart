@@ -22,6 +22,7 @@ export class CartService {
 
   creatMyOrder() {
     const cart = this.getCartInLocalStorage();
+    // TODO: edit data when send to server
     return this.http.post(this.API_URL, cart);
   }
 
@@ -39,6 +40,7 @@ export class CartService {
       itemArr: [
         {
           name: product.name,
+          image: product.images[0].url,
           productId: product.id,
           quantity: 1,
           price: product.price,
@@ -71,6 +73,7 @@ export class CartService {
       if (!check) {
         productsOrder.push({
           name: product.name,
+          image: product.images[0].url,
           productId: product.id,
           quantity: 1,
           price: product.price,

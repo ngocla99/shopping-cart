@@ -1,7 +1,6 @@
 <!-- <div class="container">
   <ng-container *ngIf="!checkEmptyCart; else nothing">
     <section class="content mt-4">
-
       <hr />
       <div
         class="row product justify-content-between align-items-center mt-5"
@@ -84,7 +83,7 @@
 <div class="content-wrapper">
   <div class="container-xxl">
     <div class="row">
-      <div class="col-md-8">
+      <div class="col-xl-8 mb-5">
         <h3 class="pb-3">Order</h3>
         <div class="order">
           <ul class="p-0 m-0">
@@ -94,9 +93,7 @@
             >
               <div class="info-product d-flex align-items-center">
                 <div class="img-product pe-4">
-                  <img
-                    src="https://images.unsplash.com/photo-1626548307930-deac221f87d9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8Y3V0ZXxlbnwwfDJ8MHx8&auto=format&fit=crop&w=500&q=60"
-                  />
+                  <img [src]="product.image" />
                 </div>
                 <div class="description">
                   <h5>{{ product?.name }}</h5>
@@ -113,21 +110,23 @@
 
                   <div class="num-block skin-5 me-5">
                     <div class="num-in">
-                      <span class="minus dis">-</span>
+                      <span class="minus dis" (click)="decrease(product)"
+                        >-</span
+                      >
                       <input type="text" class="in-num" value="1" readonly="" />
-                      <span class="plus">+</span>
+                      <span class="plus" (click)="increase(product)">+</span>
                     </div>
                   </div>
                 </div>
               </div>
-              <div class="delete-product">
+              <div class="delete-product" (click)="deleteCartItem(product, i)">
                 <i class="fa-solid fa-xmark"></i>
               </div>
             </li>
           </ul>
         </div>
       </div>
-      <div class="col-md-4">
+      <div class="col-xl-4">
         <h3 class="pb-3">Payment Summary</h3>
         <div class="payment">
           <div class="code d-flex justify-content-between mb-2">
@@ -155,7 +154,9 @@
           </div>
           <hr />
           <div class="check-out d-flex align-items-center w-100">
-            <button class="btn btn-primary w-100">Check out</button>
+            <button class="btn btn-primary w-100" (click)="onConfirm()">
+              Check out
+            </button>
           </div>
         </div>
       </div>

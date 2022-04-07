@@ -11,7 +11,6 @@ export class CartService {
   private myOrder: any = [];
   private cartItemLists: any = [];
   private productList = new BehaviorSubject<any>([]);
-  private userID: number = 0;
   private itemInCart: any[] = [];
 
   constructor(private authService: AuthService, private http: HttpClient) {}
@@ -22,33 +21,18 @@ export class CartService {
 
   creatMyOrder() {
     const cart = this.getCartInLocalStorage();
-    // TODO: edit data when send to server
-    return this.http.post(this.API_URL, cart);
+    const cartObj = JSON.parse(JSON.stringify(cart));
+    const itemArr = cartObj.itemArr;
+    itemArr.forEach((item: any) => {
+      delete item.image;
+      delete item.name;
+    });
+    return this.http.post(this.API_URL, cartObj);
   }
 
   addToCart(product: any, decrease = false) {
     // this.myOrder.push(product);
     const userId = this.authService.getUserInLocalStorage().id;
-    let cart = {
-      order: {
-        paymentMethod: '',
-        address: '',
-        contact: null,
-        totalPrice: product.price,
-        userId: userId,
-      },
-      itemArr: [
-        {
-          name: product.name,
-          image: product.images[0].url,
-          productId: product.id,
-          quantity: 1,
-          price: product.price,
-          total: product.price,
-        },
-      ],
-    };
-
     let checkLocalStorge = this.getCartInLocalStorage();
     if (checkLocalStorge) {
       const cart = checkLocalStorge;
@@ -82,6 +66,25 @@ export class CartService {
       }
       this.saveCartToLocalStorage(cart);
     } else {
+      const cart = {
+        order: {
+          paymentMethod: '',
+          address: '',
+          contact: null,
+          totalPrice: product.price,
+          userId: userId,
+        },
+        itemArr: [
+          {
+            name: product.name,
+            image: product.images[0].url,
+            productId: product.id,
+            quantity: 1,
+            price: product.price,
+            total: product.price,
+          },
+        ],
+      };
       this.itemInCart.push(cart);
       this.saveCartToLocalStorage(cart);
     }

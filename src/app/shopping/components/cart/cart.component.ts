@@ -21,9 +21,9 @@ export class CartComponent implements OnInit {
   ngOnInit(): void {
     this.data = JSON.parse(localStorage.getItem('cart') || 'null');
     this.products = this.data?.itemArr;
-    console.log(this.products);
     this.checkEmptyCart = this.products?.length === 0;
-    this.totalSum = this.products.reduce((acc, curr) => acc + curr.total, 0);
+    if (this.products)
+      this.totalSum = this.products.reduce((acc, curr) => acc + curr.total, 0);
   }
 
   onConfirm() {
@@ -36,7 +36,6 @@ export class CartComponent implements OnInit {
     this.checkEmpty = this.products.every((data) => data.quantity == 0);
     const data = JSON.parse(localStorage.getItem('cart') || 'null');
     this.checkEmptyCart = data == null;
-    // console.log(this.checkEmptyCart)
     if (!this.checkEmptyCart) {
       const products = data?.itemArr as any[];
       this.totalSum = products.reduce((acc, curr) => acc + curr.total, 0);
@@ -50,8 +49,8 @@ export class CartComponent implements OnInit {
     );
     this.products[productIndex].quantity++;
     this.products[productIndex].total += this.products[productIndex].price;
-    this.cartService.addToCart(product);
     this.totalSum = this.products.reduce((acc, curr) => acc + curr.total, 0);
+    this.cartService.addToCart(product);
   }
 
   decrease(product: any) {

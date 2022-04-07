@@ -71,58 +71,70 @@
     </div>
   </ng-template>
 </div>
+-->
+
 <app-modal-bill
-*ngIf="showModal"
-[totalPrice]="totalSum"
-(onHideModal)="showModal = false"
-></app-modal-bill> -->
+  *ngIf="showModal"
+  [totalPrice]="totalSum"
+  (onHideModal)="showModal = false"
+></app-modal-bill>
 
 <app-menu [isCart]="true"></app-menu>
 <!-- ORDER CHECKOUT -->
 
-<div class="content-wrapper">
+<div *ngIf="!checkEmptyCart" class="content-wrapper">
   <div class="container-xxl">
     <div class="row">
       <div class="col-xl-8 mb-5">
         <h3 class="pb-3">Order</h3>
         <div class="order">
           <ul class="p-0 m-0">
-            <li
-              class="d-flex justify-content-between align-items-center py-3"
-              *ngFor="let product of products; let i = index"
-            >
-              <div class="info-product d-flex align-items-center">
-                <div class="img-product pe-4">
-                  <img [src]="product.image" />
+            <ng-container *ngFor="let product of products; let i = index">
+              <li
+                class="d-flex justify-content-between align-items-center py-3"
+                *ngIf="product?.quantity"
+              >
+                <div class="info-product d-flex align-items-center">
+                  <div class="img-product pe-4">
+                    <img [src]="product.image" />
+                  </div>
+                  <div class="description">
+                    <h5>{{ product?.name }}</h5>
+                    <p>Color: <span>Red/White</span></p>
+                    <p>Size: <span>L</span></p>
+                  </div>
                 </div>
-                <div class="description">
-                  <h5>{{ product?.name }}</h5>
-                  <p>Color: <span>Red/White</span></p>
-                  <p>Size: <span>L</span></p>
+                <div class="price-product">
+                  <p class="text-price">${{ product?.total }}</p>
                 </div>
-              </div>
-              <div class="price-product">
-                <p class="text-price">${{ product?.price }}</p>
-              </div>
-              <div class="quantity-product">
-                <div class="d-flex align-items-center">
-                  <p class="pe-3">Quantity:</p>
+                <div class="quantity-product">
+                  <div class="d-flex align-items-center">
+                    <p class="pe-3">Quantity:</p>
 
-                  <div class="num-block skin-5 me-5">
-                    <div class="num-in">
-                      <span class="minus dis" (click)="decrease(product)"
-                        >-</span
-                      >
-                      <input type="text" class="in-num" value="1" readonly="" />
-                      <span class="plus" (click)="increase(product)">+</span>
+                    <div class="num-block skin-5 me-5">
+                      <div class="num-in">
+                        <span class="minus dis" (click)="decrease(product)"
+                          >-</span
+                        >
+                        <input
+                          type="text"
+                          class="in-num"
+                          [value]="product?.quantity"
+                          readonly=""
+                        />
+                        <span class="plus" (click)="increase(product)">+</span>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-              <div class="delete-product" (click)="deleteCartItem(product, i)">
-                <i class="fa-solid fa-xmark"></i>
-              </div>
-            </li>
+                <div
+                  class="delete-product"
+                  (click)="deleteCartItem(product, i)"
+                >
+                  <i class="fa-solid fa-xmark"></i>
+                </div>
+              </li>
+            </ng-container>
           </ul>
         </div>
       </div>
@@ -142,7 +154,7 @@
           <hr />
           <div class="d-flex justify-content-between mb-2">
             <p>Order Summary</p>
-            <h5>$122</h5>
+            <h5>${{ totalSum }}</h5>
           </div>
           <div class="shipping d-flex justify-content-between mb-2">
             <p>Shipping</p>
@@ -150,7 +162,7 @@
           </div>
           <div class="d-flex justify-content-between mb-2">
             <p>Total Amount</p>
-            <h5>$127</h5>
+            <h5>${{ totalSum + 5 }}</h5>
           </div>
           <hr />
           <div class="check-out d-flex align-items-center w-100">
@@ -163,3 +175,5 @@
     </div>
   </div>
 </div>
+
+<app-empty-cart *ngIf="checkEmptyCart"></app-empty-cart>

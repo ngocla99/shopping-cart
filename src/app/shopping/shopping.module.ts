@@ -16,6 +16,7 @@ import { MenuComponent } from './components/shared/menu/menu.component';
 import { PaginationComponent } from './components/home/pagination/pagination.component';
 import { ModalBillComponent } from './components/cart/modal-bill/modal-bill.component';
 import { ModalOrderComponent } from './components/list-orders/modal-order/modal-order.component';
+import { EmptyCartComponent } from './components/cart/empty-cart/empty-cart.component';
 @NgModule({
   declarations: [
     ShoppingComponent,
@@ -28,6 +29,7 @@ import { ModalOrderComponent } from './components/list-orders/modal-order/modal-
     PaginationComponent,
     ModalBillComponent,
     ModalOrderComponent,
+    EmptyCartComponent,
   ],
   imports: [
     CommonModule,

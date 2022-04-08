@@ -29,10 +29,11 @@ export class ModalBillComponent implements OnInit {
     this.cartService.saveBillInformation(billInfo, this.totalPrice);
     this.cartService.creatMyOrder().subscribe(
       () => {
-        this.swalAlert.titleAlertTimer('center', 'success', 'Order successful');
         form.reset();
         this.onHideModal.emit(false);
         this.cartService.deleteCartInLocalStorage();
+        this.swalAlert.titleAlertTimer('center', 'success', 'Order successful');
+        this.cartService.productList.next([]);
         this.router.navigateByUrl('/');
       },
       (error) => {

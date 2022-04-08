@@ -21,9 +21,12 @@ export class CartComponent implements OnInit {
   ngOnInit(): void {
     this.data = JSON.parse(localStorage.getItem('cart') || 'null');
     this.products = this.data?.itemArr;
-    this.checkEmptyCart = this.products?.length === 0;
-    if (this.products)
+
+    if (this.products) {
       this.totalSum = this.products.reduce((acc, curr) => acc + curr.total, 0);
+    } else {
+      this.checkEmptyCart = true;
+    }
   }
 
   onConfirm() {

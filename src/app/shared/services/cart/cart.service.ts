@@ -10,7 +10,7 @@ export class CartService {
   private API_URL = 'http://137.184.207.13:5000/v1/orders';
   private myOrder: any = [];
   private cartItemLists: any = [];
-  private productList = new BehaviorSubject<any>([]);
+  productList = new BehaviorSubject<any>([]);
   private itemInCart: any[] = [];
 
   constructor(private authService: AuthService, private http: HttpClient) {}

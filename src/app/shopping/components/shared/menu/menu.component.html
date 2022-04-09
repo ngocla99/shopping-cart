@@ -23,7 +23,10 @@
         *ngIf="!isCart && !isAdmin && isSignedIn"
         routerLink="/cart"
         class="menu-item fa-solid fa-cart-shopping"
-      ></a>
+        ><span *ngIf="totalItems" class="total-item-responsive">{{
+          totalItems
+        }}</span></a
+      >
       <a
         *ngIf="isAdmin"
         routerLink="/admin"

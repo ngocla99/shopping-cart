@@ -118,3 +118,17 @@
   right: auto;
   left: 1em;
 }
+
+.total-item-responsive {
+  position: absolute;
+  top: 16%;
+  right: 13%;
+  height: 14px;
+  width: 14px;
+  line-height: 14px;
+  font-size: 9px;
+  font-weight: 600;
+  background: #1dc972;
+  color: white;
+  border-radius: 50%;
+}

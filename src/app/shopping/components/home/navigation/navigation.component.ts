@@ -15,6 +15,7 @@ export class NavigationComponent implements OnInit {
   user!: UserInfo;
   isSignedIn = false;
   isAdmin = false;
+  // isAdmin = false;
   totalItems!: number;
   constructor(
     private userService: UserService,

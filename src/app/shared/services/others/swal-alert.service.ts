@@ -140,4 +140,15 @@ export class SwalAlertService {
       cancelButtonColor: '#1dc972',
     });
   }
+
+  deleteCartItem() {
+    return Swal.fire({
+      title: 'Do you want to remove this product?',
+      showCancelButton: true,
+      confirmButtonText: 'Yes',
+      confirmButtonColor: '#224957',
+      cancelButtonText: 'No',
+      cancelButtonColor: '#1dc972',
+    });
+  }
 }

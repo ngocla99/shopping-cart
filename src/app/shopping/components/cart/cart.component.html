@@ -24,7 +24,9 @@
                     <img [src]="product.image" />
                   </div>
                   <div class="description">
-                    <h5>{{ product?.name }}</h5>
+                    <h5 [title]="product?.name">
+                      {{ product?.name | truncate: 12 }}
+                    </h5>
                     <p>Color: <span>Red/White</span></p>
                     <p>Size: <span>L</span></p>
                   </div>

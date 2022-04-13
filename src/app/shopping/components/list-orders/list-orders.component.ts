@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { OrderDetail, OrdersData } from 'src/app/shared/models/order.model';
 import { UserInfo } from 'src/app/shared/models/user.model';
+import { SwalAlertService } from 'src/app/shared/services/others/swal-alert.service';
 import { ProductService } from 'src/app/shared/services/product/product.service';
 import { UserService } from 'src/app/shared/services/user/user.service';
 
@@ -10,6 +11,7 @@ import { UserService } from 'src/app/shared/services/user/user.service';
   styleUrls: ['./list-orders.component.css'],
 })
 export class ListOrdersComponent implements OnInit {
+  p: number = 1;
   isLoading: boolean = false;
   showModal: boolean = false;
   user!: UserInfo;
@@ -18,7 +20,8 @@ export class ListOrdersComponent implements OnInit {
   myOrders: OrderDetail[] = [];
   constructor(
     private userService: UserService,
-    private productService: ProductService
+    private productService: ProductService,
+    private swalAlert: SwalAlertService
   ) {}
 
   ngOnInit(): void {
@@ -37,5 +40,14 @@ export class ListOrdersComponent implements OnInit {
   onShowModal(index: number) {
     this.showModal = true;
     this.index = index;
+  }
+
+  popupDevelop() {
+    this.swalAlert.titleAlertTimer(
+      'center',
+      'info',
+      'This feature is in developement',
+      true
+    );
   }
 }

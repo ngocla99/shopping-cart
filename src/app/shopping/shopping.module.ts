@@ -17,6 +17,7 @@ import { PaginationComponent } from './components/home/pagination/pagination.com
 import { ModalBillComponent } from './components/cart/modal-bill/modal-bill.component';
 import { ModalOrderComponent } from './components/list-orders/modal-order/modal-order.component';
 import { EmptyCartComponent } from './components/cart/empty-cart/empty-cart.component';
+import { NgxPaginationModule } from 'ngx-pagination';
 @NgModule({
   declarations: [
     ShoppingComponent,
@@ -38,6 +39,7 @@ import { EmptyCartComponent } from './components/cart/empty-cart/empty-cart.comp
     ReactiveFormsModule,
     FormsModule,
     Ng2SearchPipeModule,
+    NgxPaginationModule,
   ],
 })
 export class ShoppingModule {}

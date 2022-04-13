@@ -110,10 +110,16 @@
                   </tr>
                 </thead>
                 <tbody class="table-border-bottom-0">
-                  <tr *ngFor="let order of myOrders; let i = index">
+                  <tr
+                    *ngFor="
+                      let order of myOrders
+                        | paginate: { itemsPerPage: 5, currentPage: p };
+                      let i = index
+                    "
+                  >
                     <td class="control" (click)="onShowModal(i)"></td>
                     <td class="col--1">
-                      {{ order?.createdAt | date: "h:mm a, dd/MM/yyyy" }}
+                      {{ order?.createdAt | date: "dd/MM/yyyy" }}
                     </td>
                     <td class="col--2">
                       <span
@@ -129,60 +135,11 @@
                   </tr>
                 </tbody>
               </table>
-              <div class="d-flex justify-content-end mx-4">
-                <div
-                  class="dataTables_paginate paging_simple_numbers"
-                  id="DataTables_Table_0_paginate"
-                >
-                  <ul class="pagination">
-                    <li
-                      class="paginate_button page-item previous disabled"
-                      id="DataTables_Table_0_previous"
-                    >
-                      <a
-                        href="#"
-                        aria-controls="DataTables_Table_0"
-                        data-dt-idx="0"
-                        tabindex="0"
-                        class="page-link"
-                        >Previous</a
-                      >
-                    </li>
-                    <li class="paginate_button page-item active">
-                      <a
-                        href="#"
-                        aria-controls="DataTables_Table_0"
-                        data-dt-idx="1"
-                        tabindex="0"
-                        class="page-link"
-                        >1</a
-                      >
-                    </li>
-                    <li class="paginate_button page-item">
-                      <a
-                        href="#"
-                        aria-controls="DataTables_Table_0"
-                        data-dt-idx="2"
-                        tabindex="0"
-                        class="page-link"
-                        >2</a
-                      >
-                    </li>
-                    <li
-                      class="paginate_button page-item next"
-                      id="DataTables_Table_0_next"
-                    >
-                      <a
-                        href="#"
-                        aria-controls="DataTables_Table_0"
-                        data-dt-idx="3"
-                        tabindex="0"
-                        class="page-link"
-                        >Next</a
-                      >
-                    </li>
-                  </ul>
-                </div>
+              <div class="panigation d-flex justify-content-end mx-4">
+                <pagination-controls
+                  class="pagination"
+                  (pageChange)="p = $event"
+                ></pagination-controls>
               </div>
             </div>
           </div>
@@ -199,6 +156,7 @@
                 type="button"
                 data-bs-toggle="modal"
                 data-bs-target="#addNewCCModal"
+                (click)="popupDevelop()"
               >
                 <i class="fa-solid fa-plus bx-xs me-1"></i>Add Card
               </button>
@@ -225,10 +183,16 @@
                         class="btn btn-label-primary me-3"
                         data-bs-toggle="modal"
                         data-bs-target="#editCCModal"
+                        (click)="popupDevelop()"
                       >
                         Edit
                       </button>
-                      <button class="btn btn-label-secondary">Delete</button>
+                      <button
+                        class="btn btn-label-secondary"
+                        (click)="popupDevelop()"
+                      >
+                        Delete
+                      </button>
                     </div>
                     <small class="mt-sm-auto mt-2 order-sm-1 order-0"
                       >Card expires at 12/26</small
@@ -258,10 +222,16 @@
                         class="btn btn-label-primary me-3"
                         data-bs-toggle="modal"
                         data-bs-target="#editCCModal"
+                        (click)="popupDevelop()"
                       >
                         Edit
                       </button>
-                      <button class="btn btn-label-secondary">Delete</button>
+                      <button
+                        class="btn btn-label-secondary"
+                        (click)="popupDevelop()"
+                      >
+                        Delete
+                      </button>
                     </div>
                     <small class="mt-sm-auto mt-2 order-sm-1 order-0"
                       >Card expires at 10/24</small
@@ -288,10 +258,16 @@
                         class="btn btn-label-primary me-3"
                         data-bs-toggle="modal"
                         data-bs-target="#editCCModal"
+                        (click)="popupDevelop()"
                       >
                         Edit
                       </button>
-                      <button class="btn btn-label-secondary">Delete</button>
+                      <button
+                        class="btn btn-label-secondary"
+                        (click)="popupDevelop()"
+                      >
+                        Delete
+                      </button>
                     </div>
                     <small class="mt-sm-auto mt-2 order-sm-1 order-0"
                       >Card expires at 10/27</small

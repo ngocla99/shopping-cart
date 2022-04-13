@@ -190,7 +190,7 @@ div.dataTables_wrapper
 }
 
 div.dataTables_wrapper div.dataTables_paginate ul.pagination .page-link {
-  padding: 0.625rem 0.5125rem;
+  padding: 0.625rem 0.78rem;
   min-width: calc(2rem + 0px);
   font-size: 0.75rem;
   line-height: 1;
@@ -390,4 +390,74 @@ td.control:before {
   .col--3 {
     display: none;
   }
+}
+
+/* Pagination */
+.pagination {
+  font-family: "Lato", sans-serif;
+  font-size: 15px;
+}
+
+.pagination /deep/ .ngx-pagination .current {
+  border-color: #20df7f;
+  background-color: #20df7f;
+  color: #fff;
+  box-shadow: 0 0.125rem 0.25rem rgb(105 108 255 / 40%);
+  border-radius: 0.25rem;
+  padding: 0.625rem 0.78rem;
+  font-size: 0.75rem;
+  line-height: 1;
+}
+
+.pagination /deep/ .ngx-pagination a,
+.ngx-pagination button {
+  background-color: #f0f2f4;
+  border: 0px solid #d9dee3;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
+    border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  border-radius: 0.25rem;
+  padding: 0.625rem 0.78rem;
+  font-size: 0.75rem;
+  line-height: 1;
+  text-decoration: none;
+}
+
+.pagination /deep/ .ngx-pagination a:hover,
+.ngx-pagination button:hover {
+  background: #d4d4d4;
+  border: 0px solid #d9dee3;
+  border-radius: 0.25rem;
+  padding: 0.625rem 0.78rem;
+  font-size: 0.75rem;
+  line-height: 1;
+  text-decoration: none;
+}
+
+.pagination /deep/ .ngx-pagination .disabled {
+  font-size: 0.75rem;
+  background-color: #f0f2f4;
+  border: 0px solid #d9dee3;
+  border-radius: 0.25rem;
+  line-height: 1;
+  padding: 0.625rem 0.78rem;
+}
+
+.pagination /deep/ .ngx-pagination .pagination-previous::before,
+.pagination /deep/ .ngx-pagination .pagination-previous a::before {
+  content: none;
+}
+
+.pagination /deep/ .ngx-pagination .pagination-next::after,
+.pagination /deep/ .ngx-pagination .pagination-next a::after {
+  content: none;
+}
+
+.pagination /deep/ .ngx-pagination a:focus,
+.ngx-pagination button:focus {
+  outline: none;
+  background: #d4d4d4;
+}
+
+.pagination /deep/ .ngx-pagination li:not(:first-child) {
+  margin-left: 0.1875rem;
 }

@@ -1,29 +1,14 @@
 <!--Container -->
-<div class="mx-auto bg-grey-400">
+<!-- <div class="mx-auto bg-grey-400">
   <!--Screen-->
-  <div class="min-h-screen flex flex-col">
+<!-- <div class="min-h-screen flex flex-col">
     <!--Header Section Starts Here-->
-    <header class="bg-nav">
+<!-- <header class="bg-nav">
       <div style="background-color: #093545" class="flex justify-between">
         <div class="p-1 mx-3 inline-flex items-center">
           <i class="fas fa-bars pr-2 text-white" onclick="sidebarToggle()"></i>
           <h1 style="font-size: 30px" class="text-white p-2">PShop Web</h1>
         </div>
-        <!-- <div class="p-1 flex flex-row items-center">
-                    <a href="https://github.com/tailwindadmin/admin" class="text-white p-2 mr-2 no-underline hidden md:block lg:block">Github</a>
-
-
-                    <img onclick="profileToggle()" class="inline-block h-8 w-8 rounded-full" src="https://avatars0.githubusercontent.com/u/4323180?s=460&v=4" alt="">
-                    <a href="#" onclick="profileToggle()" class="text-white p-2 no-underline hidden md:block lg:block">Adam Wathan</a>
-                    <div id="ProfileDropDown" class="rounded hidden shadow-md bg-white absolute pin-t mt-12 mr-1 pin-r">
-                        <ul class="list-reset">
-                          <li><a href="#" class="no-underline px-4 py-2 block text-black hover:bg-grey-light">My account</a></li>
-                          <li><a href="#" class="no-underline px-4 py-2 block text-black hover:bg-grey-light">Notifications</a></li>
-                          <li><hr class="border-t mx-2 border-grey-ligght"></li>
-                          <li><a href="#" class="no-underline px-4 py-2 block text-black hover:bg-grey-light">Logout</a></li>
-                        </ul>
-                    </div>
-                </div> -->
         <div class="p-1 flex flex-row items-center dropdown">
           <img
             style="margin-right: 10px"
@@ -51,12 +36,12 @@
           </ul>
         </div>
       </div>
-    </header>
-    <!--/Header-->
+    </header> -->
+<!--/Header-->
 
-    <div class="flex flex-1">
+<!-- <div class="flex flex-1">
       <!--Sidebar-->
-      <!-- <aside
+<!-- <aside
         style="width: 200px"
         id="sidebar"
         class="bg-side-nav w-full md:w-1/6 lg:w-1/6 border-r border-side-nav hidden md:block lg:block"
@@ -114,13 +99,77 @@
           </div>
         </ul>
       </aside> -->
-      <!--/Sidebar-->
-      <app-admin-aside></app-admin-aside>
-      <!--Main-->
-      <main class="bg-white-300 flex-1 p-3 overflow-hidden">
-        <router-outlet></router-outlet>
-      </main>
-      <!--/Main-->
+
+<div class="layout-container">
+  <!-- Sidebar -->
+  <nav class="sidebar">
+    <header>
+      <div class="image-text">
+        <span class="image">
+          <!--<img src="logo.png" alt="">-->
+        </span>
+
+        <div class="text logo-text">
+          <span class="name">Codinglab</span>
+          <span class="profession">Web developer</span>
+        </div>
+      </div>
+
+      <i class="bx bx-chevron-right toggle"></i>
+    </header>
+
+    <div class="menu-bar">
+      <div class="menu">
+        <ul class="menu-links p-0">
+          <li class="nav-link">
+            <a href="#">
+              <i class="bx bx-home-alt icon"></i>
+              <span class="text nav-text">Dashboard</span>
+            </a>
+          </li>
+
+          <li class="nav-link">
+            <a href="#">
+              <i class="bx bx-layer icon"></i>
+              <span class="text nav-text">Products</span>
+            </a>
+          </li>
+
+          <li class="nav-link">
+            <a href="#">
+              <i class="bx bx-user icon"></i>
+              <span class="text nav-text">Users</span>
+            </a>
+          </li>
+
+          <li class="nav-link">
+            <a href="#">
+              <i class="bx bx-cart icon"></i>
+              <span class="text nav-text">Orders</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="bottom-content">
+        <li class="">
+          <a href="#">
+            <i class="bx bx-log-out icon"></i>
+            <span class="text nav-text">Logout</span>
+          </a>
+        </li>
+      </div>
     </div>
-  </div>
+  </nav>
+
+  <!-- <section class="home">
+    <div class="text">Dashboard Sidebar</div>
+  </section> -->
+
+  <!-- /Sidebar -->
+  <!--Main-->
+  <main class="home bg-white-300 flex-1 p-3 overflow-hidden">
+    <router-outlet></router-outlet>
+  </main>
+  <!--/Main-->
 </div>

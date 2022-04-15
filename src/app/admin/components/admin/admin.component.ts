@@ -12,6 +12,7 @@ export class AdminComponent implements OnInit {
   isLoading = false;
   isEditing = false;
   userInfo!: UserInfo;
+  toggleSidebar: boolean = false;
 
   constructor(
     private userService: UserService,

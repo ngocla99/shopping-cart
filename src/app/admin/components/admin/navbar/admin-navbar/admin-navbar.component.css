@@ -64,7 +64,7 @@
 
 .nav-link {
   display: block;
-  padding: 0.5rem 1.25rem;
+  padding: 0.5rem;
   color: #8e9baa;
   transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
     border-color 0.15s ease-in-out;
@@ -83,35 +83,40 @@
 }
 
 .flag-icon {
-  position: relative;
   display: inline-block;
+  /* position: relative; */
   width: 1.3333333333em;
-  line-height: 1em;
+  background-color: red;
+  /* line-height: 1em; */
 }
 
-.flag-icon-background,
+/* .flag-icon-background,
 .flag-icon {
   background-size: contain;
   background-position: 50%;
   background-repeat: no-repeat;
 }
 
-.me-1 {
-  margin-right: 0.25rem rem !important;
+.flag-icon-us.flag-icon-squared {
+  background-image: url("https://demos.themeselection.com/sneat-bootstrap-html-admin-template/assets/vendor/fonts/flags/1x1/us.svg");
 }
 
-.flag-icon-us.flag-icon-squared {
-  background-image: url("https://demos.themeselection.com/sneat-bootstrap-h…min-template/assets/vendor/fonts/flags/1x1/us.svg");
-}
 .flag-icon.flag-icon-squared {
   width: 1em;
 }
+
 .rounded-circle {
   border-radius: 50% !important;
 }
+
 .fs-3 {
   font-size: calc(1.2875rem + 0.45vw) !important;
 }
+
 .flag-icon {
   vertical-align: middle;
+} */
+
+.navbar-nav .dropdown-menu {
+  position: absolute !important;
 }

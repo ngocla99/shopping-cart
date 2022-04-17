@@ -10,21 +10,6 @@
           <h1 style="font-size: 30px" class="text-white p-2">PShop Web</h1>
         </div>
         <div class="p-1 flex flex-row items-center dropdown">
-          <img
-            style="margin-right: 10px"
-            [src]="userInfo?.avatar | validURL: 'user'"
-            class="inline-block h-8 w-8 rounded-full"
-            alt=""
-          />
-          <button
-            class="btn btn-secondary dropdown-toggle"
-            type="button"
-            id="dropdownMenuButton1"
-            data-bs-toggle="dropdown"
-            aria-expanded="false"
-          >
-            {{ userInfo?.username | titlecase }}
-          </button>
           <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
             <li>
               <a class="dropdown-item" routerLink="/auth/my-profile"

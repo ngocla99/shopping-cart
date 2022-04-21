@@ -90,7 +90,7 @@
   /* line-height: 1em; */
 }
 
-/* .flag-icon-background,
+.flag-icon-background,
 .flag-icon {
   background-size: contain;
   background-position: 50%;
@@ -115,7 +115,7 @@
 
 .flag-icon {
   vertical-align: middle;
-} */
+}
 
 .navbar-nav .dropdown-menu {
   position: absolute !important;

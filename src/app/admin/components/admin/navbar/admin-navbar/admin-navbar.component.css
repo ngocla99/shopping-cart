@@ -84,10 +84,8 @@
 
 .flag-icon {
   display: inline-block;
-  /* position: relative; */
   width: 1.3333333333em;
   background-color: red;
-  /* line-height: 1em; */
 }
 
 .flag-icon-background,

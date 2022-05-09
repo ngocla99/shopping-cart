@@ -31,7 +31,7 @@
           <li>
             <a class="dropdown-item selected" data-language="en">
               <div
-                class="flag-icon flag-icon-us flag-icon-squared rounded-circle fs-4 me-1"
+                class="flag-icon flag-icon-us flag-icon-squared rounded-circle fs-4 me-2"
               ></div>
               <span class="align-middle">English</span>
             </a>
@@ -39,7 +39,7 @@
           <li>
             <a class="dropdown-item" data-language="fr">
               <i
-                class="flag-icon flag-icon-fr flag-icon-squared rounded-circle fs-4 me-1"
+                class="flag-icon flag-icon-fr flag-icon-squared rounded-circle fs-4 me-2"
               ></i>
               <span class="align-middle">France</span>
             </a>
@@ -47,7 +47,7 @@
           <li>
             <a class="dropdown-item" data-language="de">
               <i
-                class="flag-icon flag-icon-de flag-icon-squared rounded-circle fs-4 me-1"
+                class="flag-icon flag-icon-de flag-icon-squared rounded-circle fs-4 me-2"
               ></i>
               <span class="align-middle">German</span>
             </a>
@@ -55,7 +55,7 @@
           <li>
             <a class="dropdown-item" data-language="pt">
               <i
-                class="flag-icon flag-icon-pt flag-icon-squared rounded-circle fs-4 me-1"
+                class="flag-icon flag-icon-pt flag-icon-squared rounded-circle fs-4 me-2"
               ></i>
               <span class="align-middle">Portuguese</span>
             </a>
@@ -73,6 +73,7 @@
           data-bs-toggle="dropdown"
           data-bs-auto-close="outside"
           aria-expanded="false"
+          style="line-height: 1"
         >
           <i class="bx bx-bell bx-sm"></i>
           <span class="badge bg-danger rounded-pill badge-notifications"
@@ -90,7 +91,7 @@
         >
           <div class="avatar avatar-online">
             <img
-              src="../../assets/img/avatars/1.png"
+              [src]="userInfo?.avatar"
               alt=""
               class="w-px-40 h-auto rounded-circle"
             />
@@ -103,7 +104,7 @@
                 <div class="flex-shrink-0 me-3">
                   <div class="avatar avatar-online">
                     <img
-                      src="../../assets/img/avatars/1.png"
+                      [src]="userInfo?.avatar"
                       alt=""
                       class="w-px-40 h-auto rounded-circle"
                     />
@@ -182,6 +183,8 @@
       <!--/ User -->
     </ul>
   </div>
+
+  <!-- FIXME: -->
 
   <!-- Search Small Screens -->
   <div class="navbar-search-wrapper search-input-wrapper d-none">
